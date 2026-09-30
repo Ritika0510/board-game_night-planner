@@ -1,0 +1,353 @@
+{
+  "info": {
+    "_postman_id": "7a3e811c-d6b9-4f7d-bb62-8499292a83e1",
+    "name": "BoardNight Backend API",
+    "description": "Full Postman API collection for testing BoardNight endpoints (Auth, Games, Planner/Events, and Security).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Service Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "1. Signup User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Gulshan Singh\",\n  \"email\": \"gulshan@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "signup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "if (response.token) {",
+                  "    pm.collectionVariables.set('authToken', response.token);",
+                  "}",
+                  "if (response.user && response.user.id) {",
+                  "    pm.collectionVariables.set('userId', response.user.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"faisal@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId}},\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/change-password",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "change-password"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Get Login History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login-history/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login-history", "{{userId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Games",
+      "item": [
+        {
+          "name": "1. Get User Games",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "games", "{{userId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Add Game",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId}},\n  \"name\": \"Monopoly\",\n  \"description\": \"Fast-dealing property trading game\",\n  \"minPlayers\": 2,\n  \"maxPlayers\": 8,\n  \"playTimeMinutes\": 120,\n  \"category\": \"Classic / Family\",\n  \"status\": \"available\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/games",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "games"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Update Game",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId}},\n  \"name\": \"Monopoly Deluxe\",\n  \"description\": \"Updated description with gold pieces\",\n  \"minPlayers\": 2,\n  \"maxPlayers\": 6,\n  \"playTimeMinutes\": 90,\n  \"category\": \"Family\",\n  \"status\": \"borrowed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/games/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "games", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Delete Game",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/1?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "games", "1"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Game Nights",
+      "item": [
+        {
+          "name": "1. Get User Game Nights",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/game-nights/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "game-nights", "{{userId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Create Game Night",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId}},\n  \"title\": \"Saturday Catan Championship\",\n  \"gameId\": 1,\n  \"eventDate\": \"2026-10-10\",\n  \"startTime\": \"18:30:00\",\n  \"location\": \"Apartment Clubhouse\",\n  \"maxPlayers\": 4,\n  \"notes\": \"Bring your favorite drinks.\",\n  \"status\": \"planned\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/game-nights",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "game-nights"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Update Game Night",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId}},\n  \"title\": \"Rescheduled Catan Night\",\n  \"gameId\": 1,\n  \"eventDate\": \"2026-10-11\",\n  \"startTime\": \"19:00:00\",\n  \"location\": \"Apartment Clubhouse\",\n  \"maxPlayers\": 6,\n  \"notes\": \"Extended expansion added\",\n  \"status\": \"planned\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/game-nights/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "game-nights", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Delete Game Night",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/game-nights/1?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "game-nights", "1"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
