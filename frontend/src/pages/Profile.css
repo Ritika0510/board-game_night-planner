@@ -456,3 +456,61 @@
     display: none;
   }
 }
+
+.profile-page {
+  background: var(--bg-1);
+  color: var(--text);
+}
+
+.profile-navbar {
+  background: #141d18;
+  border-color: var(--border);
+}
+
+.profile-card {
+  background: #1a241f;
+  border-color: var(--border);
+}
+
+.profile-logo span,
+.profile-nav-links a.active,
+.profile-loading { color: var(--primary-strong); }
+
+.profile-nav-links a { color: var(--text-soft); }
+.profile-header p,
+.profile-card-header p { color: var(--text-soft); }
+
+.profile-logout,
+.secondary-button {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.profile-logout:hover { border-color: var(--primary); color: var(--primary-strong); }
+
+.primary-button,
+.outline-button:hover {
+  background: linear-gradient(135deg, #d96543 0%, #f29959 100%);
+  color: var(--text);
+}
+
+.primary-button:hover { background: #ff9c6b; }
+.outline-button { border-color: var(--primary); color: var(--primary-strong); }
+
+.profile-field input,
+.login-history-item,
+.history-empty {
+  background: #111914;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.profile-field input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(233, 120, 77, 0.16);
+}
+
+.login-history-item.login-success { border-left-color: var(--accent); }
+.login-success .login-history-icon { background: rgba(184, 216, 106, 0.14); color: #d4e98a; }
+.login-history-item.login-failed { border-left-color: var(--danger); }
+.login-failed .login-history-icon { background: rgba(240, 120, 112, 0.14); color: #ffaaa1; }

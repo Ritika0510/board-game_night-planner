@@ -6,7 +6,13 @@ function MyGames() {
   // STATE
   // ==========================================
 
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("boardnightGames") || "null") || [];
+    } catch {
+      return [];
+    }
+  });
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All Games");
@@ -149,6 +155,10 @@ function MyGames() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("boardnightGames", JSON.stringify(games));
+  }, [games]);
 
   useEffect(() => {
     loadGames();

@@ -1,10 +1,71 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
+const defaultGames = [
+  { id: 1, name: "Catan", status: "available" },
+  { id: 2, name: "UNO", status: "available" },
+  { id: 3, name: "Carcassonne", status: "borrowed" },
+  { id: 4, name: "Codenames", status: "available" },
+  { id: 5, name: "Ticket to Ride", status: "available" },
+];
+
+const defaultBorrowed = [
+  { id: 1, game: "Carcassonne", person: "Karan", borrowedDate: "2026-09-20", returnDate: "2026-09-28" },
+  { id: 2, game: "Monopoly", person: "Saanya", borrowedDate: "2026-09-21", returnDate: "2026-09-30" },
+  { id: 3, game: "Codenames", person: "Gulshan", borrowedDate: "2026-09-22", returnDate: "2026-09-25" },
+];
+
+const weekData = [
+  { day: "Mon", value: 54 },
+  { day: "Tue", value: 72 },
+  { day: "Wed", value: 46 },
+  { day: "Thu", value: 91 },
+  { day: "Fri", value: 100 },
+  { day: "Sat", value: 82 },
+  { day: "Sun", value: 68 },
+];
+
 function Dashboard() {
+  const games = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("boardnightGames") || "null") || defaultGames;
+    } catch {
+      return defaultGames;
+    }
+  }, []);
+
+  const borrowed = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("boardnightBorrowed") || "null") || defaultBorrowed;
+    } catch {
+      return defaultBorrowed;
+    }
+  }, []);
+
+  const totalGames = games.length;
+  const availableGames = games.filter((game) => (game.status || "available") !== "borrowed").length;
+  const borrowedCount = borrowed.length;
+
+  const borrowerMap = borrowed.reduce((acc, item) => {
+    acc[item.person] = (acc[item.person] || 0) + 1;
+    return acc;
+  }, {});
+
+  const topBorrowers = Object.entries(borrowerMap)
+    .map(([person, count]) => ({ person, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 3);
+
+  const activityFeed = [
+    { label: "Borrow record added", value: `${borrowedCount} active loans` },
+    { label: "Library health", value: `${availableGames} games ready to play` },
+    { label: "Top lender", value: topBorrowers[0]?.person ? `${topBorrowers[0].person} borrowed ${topBorrowers[0].count} games` : "No loans yet" },
+  ];
+
+  const recentGames = games.slice(0, 3);
+
   return (
     <div className="dashboard-page">
-
-      {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <div className="dashboard-logo">
           🎲 Board<span>Night</span>
@@ -14,22 +75,10 @@ function Dashboard() {
           <Link to="/dashboard" className="active">
             📊 Dashboard
           </Link>
-
-          <Link to="/games">
-            🎲 My Games
-          </Link>
-
-          <Link to="/planner">
-            📅 Game Planner
-          </Link>
-
-          <Link to="/borrowed">
-            📦 Borrowed
-          </Link>
-
-          <Link to="/profile">
-            👤 Profile
-          </Link>
+          <Link to="/games">🎲 My Games</Link>
+          <Link to="/planner">📅 Game Planner</Link>
+          <Link to="/borrowed">📦 Borrowed</Link>
+          <Link to="/profile">👤 Profile</Link>
         </nav>
 
         <Link to="/" className="logout-link">
@@ -37,21 +86,12 @@ function Dashboard() {
         </Link>
       </aside>
 
-      {/* Main Content */}
       <main className="dashboard-main">
-
-        {/* Header */}
         <header className="dashboard-header">
           <div>
-            <p className="dashboard-eyebrow">
-              YOUR DASHBOARD
-            </p>
-
+            <p className="dashboard-eyebrow">YOUR DASHBOARD</p>
             <h1>Good evening, Faisal 👋</h1>
-
-            <p>
-              Ready to plan your next game night?
-            </p>
+            <p>Track your collection, borrow flow, and game-night momentum.</p>
           </div>
 
           <Link to="/planner" className="dashboard-action">
@@ -59,13 +99,11 @@ function Dashboard() {
           </Link>
         </header>
 
-        {/* Statistics */}
         <section className="dashboard-stats">
-
           <div className="stat-card">
             <span className="stat-icon">🎲</span>
             <div>
-              <strong>24</strong>
+              <strong>{totalGames}</strong>
               <p>Total Games</p>
             </div>
           </div>
@@ -73,7 +111,7 @@ function Dashboard() {
           <div className="stat-card">
             <span className="stat-icon">✅</span>
             <div>
-              <strong>19</strong>
+              <strong>{availableGames}</strong>
               <p>Available</p>
             </div>
           </div>
@@ -81,44 +119,31 @@ function Dashboard() {
           <div className="stat-card">
             <span className="stat-icon">📦</span>
             <div>
-              <strong>5</strong>
+              <strong>{borrowedCount}</strong>
               <p>Borrowed</p>
             </div>
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">📅</span>
+            <span className="stat-icon">📈</span>
             <div>
-              <strong>3</strong>
-              <p>Upcoming Nights</p>
+              <strong>{Math.max(4, Math.round((availableGames / Math.max(totalGames, 1)) * 100))}%</strong>
+              <p>Ready to Play</p>
             </div>
           </div>
-
         </section>
 
-        {/* Content Grid */}
         <section className="dashboard-grid">
-
-          {/* Upcoming Game Night */}
-          <div className="dashboard-card upcoming-card">
-
-            <div className="card-heading">
+          <div className="panel panel-hero">
+            <div className="panel-header">
               <div>
-                <p className="card-label">
-                  NEXT EVENT
-                </p>
-
+                <p className="card-label">NEXT EVENT</p>
                 <h2>Friday Game Night</h2>
               </div>
-
-              <span className="event-date">
-                27 SEP
-              </span>
+              <span className="event-date">27 SEP</span>
             </div>
 
-            <p className="card-description">
-              A casual game night with friends.
-            </p>
+            <p className="card-description">A casual night of strategy, chaos, and laughs with the crew.</p>
 
             <div className="event-info">
               <span>👥 8 Players</span>
@@ -135,118 +160,107 @@ function Dashboard() {
             <Link to="/planner" className="card-button">
               View Game Night →
             </Link>
-
           </div>
 
-          {/* Quick Actions */}
-          <div className="dashboard-card">
-
-            <p className="card-label">
-              QUICK ACTIONS
-            </p>
-
-            <h2>What do you want to do?</h2>
-
-            <div className="quick-actions">
-
-              <Link to="/games">
-                <span>🎲</span>
-                <div>
-                  <strong>Manage Games</strong>
-                  <small>Add or edit your games</small>
-                </div>
-              </Link>
-
-              <Link to="/planner">
-                <span>📅</span>
-                <div>
-                  <strong>Plan Game Night</strong>
-                  <small>Create a new event</small>
-                </div>
-              </Link>
-
-              <Link to="/borrowed">
-                <span>📦</span>
-                <div>
-                  <strong>Track Borrowed</strong>
-                  <small>See who has your games</small>
-                </div>
-              </Link>
-
+          <div className="panel">
+            <div className="panel-header compact-header">
+              <div>
+                <p className="card-label">BORROWING PULSE</p>
+                <h2>Who’s borrowing?</h2>
+              </div>
             </div>
 
+            <div className="pulse-list">
+              {topBorrowers.length > 0 ? (
+                topBorrowers.map(({ person, count }) => (
+                  <div key={person} className="pulse-row">
+                    <div className="pulse-meta">
+                      <span className="pulse-avatar">{person.slice(0, 1).toUpperCase()}</span>
+                      <div>
+                        <strong>{person}</strong>
+                        <small>{count} games</small>
+                      </div>
+                    </div>
+                    <div className="pulse-bar">
+                      <span style={{ width: `${Math.min((count / Math.max(borrowedCount, 1)) * 100, 100)}%` }} />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="empty-mini-label">No active borrow records yet.</p>
+              )}
+            </div>
           </div>
-
         </section>
 
-        {/* Recently Added */}
-        <section className="dashboard-card recent-games">
-
-          <div className="card-heading">
-            <div>
-              <p className="card-label">
-                YOUR COLLECTION
-              </p>
-
-              <h2>Recently Added Games</h2>
+        <section className="dashboard-grid dashboard-grid-bottom">
+          <div className="panel panel-chart">
+            <div className="panel-header compact-header">
+              <div>
+                <p className="card-label">WEEKLY PROGRESS</p>
+                <h2>Game activity</h2>
+              </div>
             </div>
 
-            <Link to="/games">
-              View All →
-            </Link>
+            <div className="chart-bars">
+              {weekData.map(({ day, value }) => (
+                <div key={day} className="bar-column">
+                  <span className="bar-value">{value}%</span>
+                  <div className="bar-track">
+                    <span className="bar-fill" style={{ height: `${value}%` }} />
+                  </div>
+                  <small>{day}</small>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="panel">
+            <div className="panel-header compact-header">
+              <div>
+                <p className="card-label">ACTIVITY</p>
+                <h2>Recent updates</h2>
+              </div>
+            </div>
+
+            <ul className="activity-feed">
+              {activityFeed.map((item) => (
+                <li key={item.label}>
+                  <span className="dot" />
+                  <div>
+                    <strong>{item.label}</strong>
+                    <small>{item.value}</small>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="dashboard-card recent-games">
+          <div className="card-heading">
+            <div>
+              <p className="card-label">YOUR COLLECTION</p>
+              <h2>Recent favorites</h2>
+            </div>
+            <Link to="/games">View All →</Link>
           </div>
 
           <div className="recent-game-list">
-
-            <div className="recent-game">
-              <div className="recent-game-icon">
-                ♟️
+            {recentGames.map((game) => (
+              <div className="recent-game" key={game.id}>
+                <div className="recent-game-icon">{game.name.includes("Catan") ? "♟️" : game.name.includes("UNO") ? "🎴" : game.name.includes("Codenames") ? "🕵️" : "🎲"}</div>
+                <div>
+                  <strong>{game.name}</strong>
+                  <p>{(game.status || "available") === "borrowed" ? "Currently borrowed" : "Ready to play"}</p>
+                </div>
+                <span className={(game.status || "available") === "borrowed" ? "borrowed-badge" : "available-badge"}>
+                  {(game.status || "available") === "borrowed" ? "Borrowed" : "Available"}
+                </span>
               </div>
-
-              <div>
-                <strong>Catan</strong>
-                <p>3–4 Players • 60–90 min</p>
-              </div>
-
-              <span className="available-badge">
-                Available
-              </span>
-            </div>
-
-            <div className="recent-game">
-              <div className="recent-game-icon">
-                🃏
-              </div>
-
-              <div>
-                <strong>Exploding Kittens</strong>
-                <p>2–5 Players • 15 min</p>
-              </div>
-
-              <span className="available-badge">
-                Available
-              </span>
-            </div>
-
-            <div className="recent-game">
-              <div className="recent-game-icon">
-                🏰
-              </div>
-
-              <div>
-                <strong>Carcassonne</strong>
-                <p>2–5 Players • 45 min</p>
-              </div>
-
-              <span className="borrowed-badge">
-                Borrowed
-              </span>
-            </div>
-
+            ))}
           </div>
-
         </section>
-
       </main>
     </div>
   );
