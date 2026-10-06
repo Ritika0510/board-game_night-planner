@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { config } from './config/index.js';
 import authRoutes from './routes/auth.routes.js';
 import gamesRoutes from './routes/games.routes.js';
 import gameNightsRoutes from './routes/gameNights.routes.js';
@@ -10,9 +11,10 @@ const app = express();
 
 // Cross-Origin Resource Sharing configuration
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  origin: config.clientOrigin,
   credentials: true
 }));
+
 
 // Body parsing middleware
 app.use(express.json());

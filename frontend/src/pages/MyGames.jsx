@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL, getAuthHeaders } from "../config/api";
+import { DiceIcon, DashboardIcon, CalendarIcon, BoxIcon, UserIcon, UsersIcon, ClockIcon, SearchIcon, EditIcon, TrashIcon, CheckIcon, TagIcon, PlusIcon, CloseIcon } from "../components/Icons";
 
 function MyGames() {
   // ==========================================
@@ -129,7 +131,10 @@ function MyGames() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/games/${user.id}`
+        `${API_BASE_URL}/api/games/${user.id}`,
+        {
+          headers: getAuthHeaders(),
+        }
       );
 
       const data = await response.json();
@@ -301,12 +306,10 @@ function MyGames() {
 
       if (editingGame) {
         const response = await fetch(
-          `http://localhost:5000/api/games/${editingGame.id}`,
+          `${API_BASE_URL}/api/games/${editingGame.id}`,
           {
             method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: getAuthHeaders(),
             body: JSON.stringify({
               userId: user.id,
               name: newGame.name.trim(),
@@ -360,12 +363,10 @@ function MyGames() {
       // ========================================
 
       const response = await fetch(
-        "http://localhost:5000/api/games",
+        `${API_BASE_URL}/api/games`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             userId: user.id,
             name: newGame.name.trim(),
@@ -447,9 +448,10 @@ function MyGames() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/games/${id}?userId=${user.id}`,
+        `${API_BASE_URL}/api/games/${id}?userId=${user.id}`,
         {
           method: "DELETE",
+          headers: getAuthHeaders(),
         }
       );
 
@@ -559,33 +561,34 @@ function MyGames() {
 
       <aside className="dashboard-sidebar">
 
-        <div className="dashboard-logo">
-          🎲 Board<span>Night</span>
+        <div className="dashboard-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <nav>
 
-          <Link to="/dashboard">
-            📊 Dashboard
+          <Link to="/dashboard" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DashboardIcon size={16} /> Dashboard
           </Link>
 
           <Link
             to="/games"
             className="active"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            🎲 My Games
+            <DiceIcon size={16} /> My Games
           </Link>
 
-          <Link to="/planner">
-            📅 Game Planner
+          <Link to="/planner" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CalendarIcon size={16} /> Game Planner
           </Link>
 
-          <Link to="/borrowed">
-            📦 Borrowed
+          <Link to="/borrowed" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <BoxIcon size={16} /> Borrowed
           </Link>
 
-          <Link to="/profile">
-            👤 Profile
+          <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <UserIcon size={16} /> Profile
           </Link>
 
         </nav>
@@ -615,8 +618,8 @@ function MyGames() {
               YOUR COLLECTION
             </p>
 
-            <h1>
-              My Games 🎲
+            <h1 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              My Games <DiceIcon size={24} />
             </h1>
 
             <p>
@@ -628,11 +631,13 @@ function MyGames() {
           <button
             className="dashboard-action"
             onClick={handleOpenAddForm}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
           >
-            + Add Game
+            <PlusIcon size={16} /> Add Game
           </button>
 
         </header>
+
 
         {/* ERROR */}
 
@@ -646,9 +651,9 @@ function MyGames() {
 
         <div className="games-toolbar">
 
-          <div className="game-search">
+          <div className="game-search" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
 
-            🔍
+            <SearchIcon size={18} />
 
             <input
               type="text"
@@ -658,6 +663,7 @@ function MyGames() {
                 setSearch(e.target.value)
               }
             />
+
 
           </div>
 
@@ -693,8 +699,8 @@ function MyGames() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              🎲
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <DiceIcon size={24} />
             </span>
 
             <div>
@@ -713,8 +719,8 @@ function MyGames() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              ✅
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <CheckIcon size={24} />
             </span>
 
             <div>
@@ -733,8 +739,8 @@ function MyGames() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              📦
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <BoxIcon size={24} />
             </span>
 
             <div>
@@ -753,8 +759,8 @@ function MyGames() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              ⏱️
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <ClockIcon size={24} />
             </span>
 
             <div>
@@ -772,6 +778,7 @@ function MyGames() {
             </div>
 
           </div>
+
 
         </section>
 
@@ -881,28 +888,27 @@ function MyGames() {
 
                     </div>
 
-                    <p>
-                      👥 {game.players}
-                    </p>
-
-                    <p>
-                      ⏱️ {game.time}
-                    </p>
-
-                    {game.category && (
-                      <p>
-                        🏷️ {game.category}
+                    <div className="game-meta-list" style={{ display: 'flex', flexDirection: 'column', gap: '6px', margin: '12px 0' }}>
+                      <p style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
+                        <UsersIcon size={14} /> {game.players}
                       </p>
-                    )}
 
-                    {game.status ===
-                      "Borrowed" &&
-                      game.borrowedBy && (
-                        <p className="borrowed-person">
-                          📦 Borrowed by{" "}
-                          {game.borrowedBy}
+                      <p style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
+                        <ClockIcon size={14} /> {game.time}
+                      </p>
+
+                      {game.category && (
+                        <p style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
+                          <TagIcon size={14} /> {game.category}
                         </p>
                       )}
+
+                      {game.status === "Borrowed" && game.borrowedBy && (
+                        <p className="borrowed-person" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
+                          <BoxIcon size={14} /> Borrowed by {game.borrowedBy}
+                        </p>
+                      )}
+                    </div>
 
                   </div>
 
@@ -915,8 +921,9 @@ function MyGames() {
                       onClick={() =>
                         handleEditGame(game)
                       }
+                      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      ✏️
+                      <EditIcon size={16} />
                     </button>
 
                     <button
@@ -926,11 +933,13 @@ function MyGames() {
                           game.id
                         )
                       }
+                      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      🗑️
+                      <TrashIcon size={16} />
                     </button>
 
                   </div>
+
 
                 </div>
 

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL, getAuthHeaders } from "../config/api";
+import { DiceIcon, DashboardIcon, CalendarIcon, BoxIcon, UserIcon, UsersIcon, ClockIcon, EditIcon, TrashIcon, CheckIcon, PlusIcon, CloseIcon, LocationIcon } from "../components/Icons";
 
 function GamePlanner() {
   // ==========================================
@@ -60,7 +62,10 @@ function GamePlanner() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/game-nights/${user.id}`
+        `${API_BASE_URL}/api/game-nights/${user.id}`,
+        {
+          headers: getAuthHeaders(),
+        }
       );
 
       const data = await response.json();
@@ -103,7 +108,10 @@ function GamePlanner() {
       setGamesLoading(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/games/${user.id}`
+        `${API_BASE_URL}/api/games/${user.id}`,
+        {
+          headers: getAuthHeaders(),
+        }
       );
 
       const data = await response.json();
@@ -341,12 +349,10 @@ function GamePlanner() {
 
       if (editingEvent) {
         const response = await fetch(
-          `http://localhost:5000/api/game-nights/${editingEvent.id}`,
+          `${API_BASE_URL}/api/game-nights/${editingEvent.id}`,
           {
             method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: getAuthHeaders(),
             body: JSON.stringify(payload),
           }
         );
@@ -376,12 +382,10 @@ function GamePlanner() {
       // ========================================
 
       const response = await fetch(
-        "http://localhost:5000/api/game-nights",
+        `${API_BASE_URL}/api/game-nights`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify(payload),
         }
       );
@@ -446,9 +450,10 @@ function GamePlanner() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/game-nights/${id}?userId=${user.id}`,
+        `${API_BASE_URL}/api/game-nights/${id}?userId=${user.id}`,
         {
           method: "DELETE",
+          headers: getAuthHeaders(),
         }
       );
 
@@ -521,36 +526,38 @@ function GamePlanner() {
 
       <aside className="dashboard-sidebar">
 
-        <div className="dashboard-logo">
-          🎲 Board<span>Night</span>
+        <div className="dashboard-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <nav>
 
-          <Link to="/dashboard">
-            📊 Dashboard
+          <Link to="/dashboard" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DashboardIcon size={16} /> Dashboard
           </Link>
 
-          <Link to="/games">
-            🎲 My Games
+          <Link to="/games" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DiceIcon size={16} /> My Games
           </Link>
 
           <Link
             to="/planner"
             className="active"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            📅 Game Planner
+            <CalendarIcon size={16} /> Game Planner
           </Link>
 
-          <Link to="/borrowed">
-            📦 Borrowed
+          <Link to="/borrowed" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <BoxIcon size={16} /> Borrowed
           </Link>
 
-          <Link to="/profile">
-            👤 Profile
+          <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <UserIcon size={16} /> Profile
           </Link>
 
         </nav>
+
 
         <button
           className="logout-link"
@@ -583,8 +590,8 @@ function GamePlanner() {
               PLAN YOUR NIGHT
             </p>
 
-            <h1>
-              Game Planner 📅
+            <h1 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Game Planner <CalendarIcon size={24} />
             </h1>
 
             <p>
@@ -597,8 +604,9 @@ function GamePlanner() {
             className="dashboard-action"
             onClick={handleOpenAddForm}
             disabled={gamesLoading}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
           >
-            + Plan Game Night
+            <PlusIcon size={16} /> Plan Game Night
           </button>
 
         </header>
@@ -617,8 +625,8 @@ function GamePlanner() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              📅
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <CalendarIcon size={24} />
             </span>
 
             <div>
@@ -635,10 +643,11 @@ function GamePlanner() {
 
           </div>
 
+
           <div className="stat-card">
 
-            <span className="stat-icon">
-              🎲
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <DiceIcon size={24} />
             </span>
 
             <div>
@@ -657,8 +666,8 @@ function GamePlanner() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              👥
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <UsersIcon size={24} />
             </span>
 
             <div>
@@ -677,8 +686,8 @@ function GamePlanner() {
 
           <div className="stat-card">
 
-            <span className="stat-icon">
-              🎉
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <CheckIcon size={24} />
             </span>
 
             <div>
@@ -694,6 +703,7 @@ function GamePlanner() {
             </div>
 
           </div>
+
 
         </section>
 
@@ -786,8 +796,8 @@ function GamePlanner() {
 
                   <div className="planner-date">
 
-                    <span>
-                      📅
+                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <CalendarIcon size={16} />
                     </span>
 
                     <strong>
@@ -829,8 +839,9 @@ function GamePlanner() {
                               event
                             )
                           }
+                          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                         >
-                          ✏️
+                          <EditIcon size={14} />
                         </button>
 
                         <button
@@ -841,8 +852,9 @@ function GamePlanner() {
                               event.id
                             )
                           }
+                          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                         >
-                          🗑️
+                          <TrashIcon size={14} />
                         </button>
 
                       </div>
@@ -851,15 +863,15 @@ function GamePlanner() {
 
                     <div className="planner-details">
 
-                      <div>
-                        🎲
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <DiceIcon size={16} />
                         <span>
                           {getGameName(event)}
                         </span>
                       </div>
 
-                      <div>
-                        ⏰
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <ClockIcon size={16} />
                         <span>
                           {formatTime(
                             event.start_time
@@ -867,16 +879,16 @@ function GamePlanner() {
                         </span>
                       </div>
 
-                      <div>
-                        📍
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <LocationIcon size={16} />
                         <span>
                           {event.location ||
                             "Location not set"}
                         </span>
                       </div>
 
-                      <div>
-                        👥
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <UsersIcon size={16} />
                         <span>
                           {event.max_players} Players
                         </span>
@@ -885,6 +897,7 @@ function GamePlanner() {
                     </div>
 
                   </div>
+
 
                 </div>
 

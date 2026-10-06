@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { DiceIcon, DashboardIcon, CalendarIcon, BoxIcon, UserIcon, CheckIcon, PlusIcon } from "../components/Icons";
+
 
 const defaultGames = [
   { id: 1, name: "Catan", status: "available" },
@@ -67,18 +69,18 @@ function Dashboard() {
   return (
     <div className="dashboard-page">
       <aside className="dashboard-sidebar">
-        <div className="dashboard-logo">
-          🎲 Board<span>Night</span>
+        <div className="dashboard-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <nav>
-          <Link to="/dashboard" className="active">
-            📊 Dashboard
+          <Link to="/dashboard" className="active" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DashboardIcon size={16} /> Dashboard
           </Link>
-          <Link to="/games">🎲 My Games</Link>
-          <Link to="/planner">📅 Game Planner</Link>
-          <Link to="/borrowed">📦 Borrowed</Link>
-          <Link to="/profile">👤 Profile</Link>
+          <Link to="/games" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><DiceIcon size={16} /> My Games</Link>
+          <Link to="/planner" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CalendarIcon size={16} /> Game Planner</Link>
+          <Link to="/borrowed" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><BoxIcon size={16} /> Borrowed</Link>
+          <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><UserIcon size={16} /> Profile</Link>
         </nav>
 
         <Link to="/" className="logout-link">
@@ -90,18 +92,20 @@ function Dashboard() {
         <header className="dashboard-header">
           <div>
             <p className="dashboard-eyebrow">YOUR DASHBOARD</p>
-            <h1>Good evening, Faisal 👋</h1>
+            <h1>Welcome back</h1>
             <p>Track your collection, borrow flow, and game-night momentum.</p>
           </div>
 
-          <Link to="/planner" className="dashboard-action">
-            + Plan Game Night
+          <Link to="/planner" className="dashboard-action" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <PlusIcon size={16} /> Plan Game Night
           </Link>
         </header>
 
         <section className="dashboard-stats">
           <div className="stat-card">
-            <span className="stat-icon">🎲</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <DiceIcon size={24} />
+            </span>
             <div>
               <strong>{totalGames}</strong>
               <p>Total Games</p>
@@ -109,7 +113,9 @@ function Dashboard() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">✅</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <CheckIcon size={24} />
+            </span>
             <div>
               <strong>{availableGames}</strong>
               <p>Available</p>
@@ -117,7 +123,9 @@ function Dashboard() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">📦</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <BoxIcon size={24} />
+            </span>
             <div>
               <strong>{borrowedCount}</strong>
               <p>Borrowed</p>
@@ -125,13 +133,16 @@ function Dashboard() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">📈</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <DashboardIcon size={24} />
+            </span>
             <div>
               <strong>{Math.max(4, Math.round((availableGames / Math.max(totalGames, 1)) * 100))}%</strong>
               <p>Ready to Play</p>
             </div>
           </div>
         </section>
+
 
         <section className="dashboard-grid">
           <div className="panel panel-hero">

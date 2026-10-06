@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE_URL, getAuthHeaders } from "../config/api";
+import { DiceIcon, DashboardIcon, CalendarIcon, RefreshIcon, UserIcon, LockIcon } from "../components/Icons";
 import "./Profile.css";
 
 function Profile() {
@@ -78,7 +80,10 @@ function Profile() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/auth/login-history/${user.id}`
+          `${API_BASE_URL}/api/auth/login-history/${user.id}`,
+          {
+            headers: getAuthHeaders(),
+          }
         );
 
         const data = await response.json();
@@ -175,12 +180,10 @@ function Profile() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/change-password",
+        `${API_BASE_URL}/api/auth/change-password`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             userId: user.id,
             currentPassword: passwords.current,
@@ -257,21 +260,22 @@ function Profile() {
 
       <nav className="profile-navbar">
 
-        <div className="profile-logo">
-          🎲 Board<span>Night</span>
+        <div className="profile-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <div className="profile-nav-links">
-          <Link to="/dashboard">📊 Dashboard</Link>
-          <Link to="/games">🎲 My Games</Link>
-          <Link to="/planner">🗓️ Game Planner</Link>
-          <Link to="/borrowed">🔄 Borrowed</Link>
+          <Link to="/dashboard" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><DashboardIcon size={16} /> Dashboard</Link>
+          <Link to="/games" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><DiceIcon size={16} /> My Games</Link>
+          <Link to="/planner" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><CalendarIcon size={16} /> Game Planner</Link>
+          <Link to="/borrowed" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}><RefreshIcon size={16} /> Borrowed</Link>
 
           <Link
             to="/profile"
             className="active"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
           >
-            👤 Profile
+            <UserIcon size={16} /> Profile
           </Link>
         </div>
 
@@ -601,7 +605,7 @@ function Profile() {
           <div className="profile-card-header">
 
             <div>
-              <h2>🔐 Login History</h2>
+              <h2 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><LockIcon size={20} /> Login History</h2>
 
               <p>
                 Recent login attempts on your BoardNight account.
