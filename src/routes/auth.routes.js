@@ -5,6 +5,9 @@ import { pool } from '../db.js';
 
 const router = Router();
 
+// Email validation helper
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 // Signup
 router.post('/signup', async (req, res, next) => {
   try {
@@ -13,7 +16,15 @@ router.post('/signup', async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
-    const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email.toLowerCase()]);
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ success: false, message: 'Invalid email address format.' });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ success: false, message: 'Password must be at least 8 characters long.' });
+    }
+
+    const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email.trim().toLowerCase()]);
     if (existing.rows.length > 0) {
       return res.status(409).json({ success: false, message: 'Email already registered.' });
     }
@@ -21,7 +32,7 @@ router.post('/signup', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await pool.query(
       'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, phone, location',
-      [name, email.toLowerCase(), hashedPassword]
+      [name.trim(), email.trim().toLowerCase(), hashedPassword]
     );
 
     res.status(201).json({
@@ -45,7 +56,7 @@ router.post('/login', async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'Email and password required.' });
     }
 
-    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email.toLowerCase()]);
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email.trim().toLowerCase()]);
     const user = result.rows[0];
 
     if (!user) {
@@ -69,7 +80,7 @@ router.post('/login', async (req, res, next) => {
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      process.env.JWT_SECRET || 'secret',
+      process.env.JWT_SECRET || 'super_secret_jwt_key',
       { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
@@ -95,6 +106,10 @@ router.put('/change-password', async (req, res, next) => {
     const { userId, currentPassword, newPassword } = req.body;
     if (!userId || !currentPassword || !newPassword) {
       return res.status(400).json({ success: false, message: 'Missing required credentials.' });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 8 characters long.' });
     }
 
     const result = await pool.query('SELECT password FROM users WHERE id = $1', [userId]);
@@ -134,5 +149,6 @@ router.get('/login-history/:userId', async (req, res, next) => {
     next(error);
   }
 });
+
 
 export default router;

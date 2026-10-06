@@ -1,17 +1,20 @@
 import express from 'express';
 import cors from 'cors';
+import { config } from './config/index.js';
 import authRoutes from './routes/auth.routes.js';
 import gamesRoutes from './routes/games.routes.js';
 import gameNightsRoutes from './routes/gameNights.routes.js';
+import { authenticateToken } from './middleware/auth.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
 // Cross-Origin Resource Sharing configuration
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  origin: config.clientOrigin,
   credentials: true
 }));
+
 
 // Body parsing middleware
 app.use(express.json());
@@ -28,8 +31,8 @@ app.get('/health', (req, res) => {
 
 // Domain route mounts
 app.use('/api/auth', authRoutes);
-app.use('/api/games', gamesRoutes);
-app.use('/api/game-nights', gameNightsRoutes);
+app.use('/api/games', authenticateToken, gamesRoutes);
+app.use('/api/game-nights', authenticateToken, gameNightsRoutes);
 
 // Catch-all 404 handler for unmatched routes
 app.use((req, res, next) => {

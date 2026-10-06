@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { DiceIcon, DashboardIcon, CalendarIcon, BoxIcon, UserIcon, UsersIcon, ClockIcon, PlusIcon, CloseIcon, RefreshIcon } from "../components/Icons";
+
 
 const defaultGames = [
   { id: 1, name: "Catan", status: "available" },
@@ -158,16 +160,16 @@ function Borrowed() {
   return (
     <div className="dashboard-page">
       <aside className="dashboard-sidebar">
-        <div className="dashboard-logo">
-          🎲 Board<span>Night</span>
+        <div className="dashboard-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <nav>
-          <Link to="/dashboard">📊 Dashboard</Link>
-          <Link to="/games">🎲 My Games</Link>
-          <Link to="/planner">📅 Game Planner</Link>
-          <Link to="/borrowed" className="active">📦 Borrowed</Link>
-          <Link to="/profile">👤 Profile</Link>
+          <Link to="/dashboard" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><DashboardIcon size={16} /> Dashboard</Link>
+          <Link to="/games" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><DiceIcon size={16} /> My Games</Link>
+          <Link to="/planner" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CalendarIcon size={16} /> Game Planner</Link>
+          <Link to="/borrowed" className="active" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><BoxIcon size={16} /> Borrowed</Link>
+          <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><UserIcon size={16} /> Profile</Link>
         </nav>
 
         <Link to="/" className="logout-link">← Back to Home</Link>
@@ -177,18 +179,22 @@ function Borrowed() {
         <header className="dashboard-header">
           <div>
             <p className="dashboard-eyebrow">GAME TRACKING</p>
-            <h1>Borrowed Games 📦</h1>
+            <h1 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Borrowed Games <BoxIcon size={24} />
+            </h1>
             <p>Keep track of what is out and what is available to play.</p>
           </div>
 
-          <button className="dashboard-action" onClick={() => setShowForm(true)}>
-            + Record Borrow
+          <button className="dashboard-action" onClick={() => setShowForm(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <PlusIcon size={16} /> Record Borrow
           </button>
         </header>
 
         <section className="dashboard-stats">
           <div className="stat-card">
-            <span className="stat-icon">📦</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <BoxIcon size={24} />
+            </span>
             <div>
               <strong>{borrowedGames.length}</strong>
               <p>Currently Borrowed</p>
@@ -196,7 +202,9 @@ function Borrowed() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">👥</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <UsersIcon size={24} />
+            </span>
             <div>
               <strong>{peopleBorrowing}</strong>
               <p>People Borrowing</p>
@@ -204,7 +212,9 @@ function Borrowed() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">🎲</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <DiceIcon size={24} />
+            </span>
             <div>
               <strong>{availableGames}</strong>
               <p>Games Available</p>
@@ -212,7 +222,9 @@ function Borrowed() {
           </div>
 
           <div className="stat-card">
-            <span className="stat-icon">🔔</span>
+            <span className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <ClockIcon size={24} />
+            </span>
             <div>
               <strong>{returnSoon}</strong>
               <p>Due Soon</p>
@@ -231,23 +243,28 @@ function Borrowed() {
 
           {borrowedGames.length === 0 ? (
             <div className="empty-borrowed">
-              <div>🎉</div>
+              <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                <BoxIcon size={36} />
+              </div>
               <h3>All games are home!</h3>
               <p>No games are currently borrowed.</p>
-              <button className="dashboard-action" onClick={() => setShowForm(true)}>
-                + Record Borrow
+              <button className="dashboard-action" onClick={() => setShowForm(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <PlusIcon size={16} /> Record Borrow
               </button>
             </div>
           ) : (
             <div className="borrowed-grid">
               {borrowedGames.map((item) => (
                 <div className="borrowed-card" key={item.id}>
-                  <div className="borrowed-card-icon">📦</div>
+                  <div className="borrowed-card-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <BoxIcon size={24} />
+                  </div>
 
                   <div className="borrowed-card-content">
                     <div className="borrowed-card-top">
                       <div>
                         <p className="planner-label">BORROWED GAME</p>
+
                         <h3>{item.game}</h3>
                       </div>
                       <span className="borrowed-badge">Borrowed</span>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DiceIcon, CalendarIcon, CastleIcon, BoxIcon, PuzzleIcon, ArrowRightIcon } from "../components/Icons";
 
 function Home() {
   return (
@@ -8,8 +9,8 @@ function Home() {
 
       <nav className="home-navbar">
 
-        <div className="home-logo">
-          🎲 Board<span>Night</span>
+        <div className="home-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={22} /> Board<span>Night</span>
         </div>
 
         <div className="home-nav-links">
@@ -34,8 +35,8 @@ function Home() {
 
         <div className="home-hero-content">
 
-          <div className="home-badge">
-            🎲 YOUR BOARD GAME COMPANION
+          <div className="home-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <DiceIcon size={14} /> YOUR BOARD GAME COMPANION
           </div>
 
           <h1>
@@ -54,15 +55,17 @@ function Home() {
             <Link
               to="/planner"
               className="home-primary-button"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              📅 Plan a Game Night
+              <CalendarIcon size={16} /> Plan a Game Night
             </Link>
 
             <Link
               to="/games"
               className="home-secondary-button"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              🎲 Browse Games
+              <DiceIcon size={16} /> Browse Games
             </Link>
 
           </div>
@@ -78,8 +81,8 @@ function Home() {
 
           <div className="dice-card">
 
-            <div className="large-dice">
-              🎲
+            <div className="large-dice" style={{ display: 'flex', justifyContent: 'center' }}>
+              <DiceIcon size={64} />
             </div>
 
             <div className="dice-card-text">
@@ -162,8 +165,8 @@ function Home() {
             </h2>
           </div>
 
-          <Link to="/games">
-            View All →
+          <Link to="/games" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            View All <ArrowRightIcon size={14} />
           </Link>
 
         </div>
@@ -173,8 +176,8 @@ function Home() {
 
           <div className="home-game-card">
 
-            <div className="home-game-icon">
-              ♟️
+            <div className="home-game-icon" style={{ display: 'flex', justifyContent: 'center' }}>
+              <CastleIcon size={28} />
             </div>
 
             <h3>
@@ -190,8 +193,8 @@ function Home() {
 
           <div className="home-game-card">
 
-            <div className="home-game-icon">
-              🃏
+            <div className="home-game-icon" style={{ display: 'flex', justifyContent: 'center' }}>
+              <BoxIcon size={28} />
             </div>
 
             <h3>
@@ -207,8 +210,8 @@ function Home() {
 
           <div className="home-game-card">
 
-            <div className="home-game-icon">
-              🎴
+            <div className="home-game-icon" style={{ display: 'flex', justifyContent: 'center' }}>
+              <PuzzleIcon size={28} />
             </div>
 
             <h3>
@@ -224,8 +227,8 @@ function Home() {
 
           <div className="home-game-card">
 
-            <div className="home-game-icon">
-              🏰
+            <div className="home-game-icon" style={{ display: 'flex', justifyContent: 'center' }}>
+              <CastleIcon size={28} />
             </div>
 
             <h3>
@@ -264,8 +267,9 @@ function Home() {
         <Link
           to="/signup"
           className="home-primary-button"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
         >
-          Create Free Account →
+          Create Free Account <ArrowRightIcon size={16} />
         </Link>
 
       </section>
@@ -275,12 +279,12 @@ function Home() {
 
       <footer className="home-footer">
 
-        <div className="home-logo">
-          🎲 Board<span>Night</span>
+        <div className="home-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <DiceIcon size={20} /> Board<span>Night</span>
         </div>
 
         <p>
-          Plan better. Play more. 🎲
+          Plan better. Play more.
         </p>
 
       </footer>
@@ -288,5 +292,6 @@ function Home() {
     </div>
   );
 }
+
 
 export default Home;

@@ -6,10 +6,13 @@ const router = Router();
 // Get all games for a specific user
 router.get('/:userId', async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const targetUserId = parseInt(req.params.userId, 10);
+    // Enforce ownership: users can only fetch their own games if authenticated
+    const effectiveUserId = req.user?.id || targetUserId;
+
     const result = await pool.query(
       'SELECT id, user_id, name, description, min_players, max_players, play_time_minutes, category, status FROM games WHERE user_id = $1 ORDER BY id DESC',
-      [userId]
+      [effectiveUserId]
     );
 
     res.json({
@@ -24,17 +27,26 @@ router.get('/:userId', async (req, res, next) => {
 // Add new game
 router.post('/', async (req, res, next) => {
   try {
-    const { userId, name, description, minPlayers, maxPlayers, playTimeMinutes, category, status } = req.body;
+    const { name, description, minPlayers, maxPlayers, playTimeMinutes, category, status } = req.body;
+    const userId = req.user?.id || req.body.userId;
 
-    if (!userId || !name) {
-      return res.status(400).json({ success: false, message: 'User ID and Game Name are required.' });
+    if (!userId || !name || !name.trim()) {
+      return res.status(400).json({ success: false, message: 'Game name is required.' });
+    }
+
+    const min = parseInt(minPlayers, 10) || 1;
+    const max = parseInt(maxPlayers, 10) || 4;
+    const playTime = parseInt(playTimeMinutes, 10) || 30;
+
+    if (min > max) {
+      return res.status(400).json({ success: false, message: 'Min players cannot exceed max players.' });
     }
 
     const result = await pool.query(
       `INSERT INTO games (user_id, name, description, min_players, max_players, play_time_minutes, category, status)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING id, user_id, name, description, min_players, max_players, play_time_minutes, category, status`,
-      [userId, name, description || null, minPlayers || 1, maxPlayers || 4, playTimeMinutes || 30, category || null, status || 'available']
+      [userId, name.trim(), description?.trim() || null, min, max, playTime, category?.trim() || null, status || 'available']
     );
 
     res.status(201).json({
@@ -50,14 +62,23 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { userId, name, description, minPlayers, maxPlayers, playTimeMinutes, category, status } = req.body;
+    const { name, description, minPlayers, maxPlayers, playTimeMinutes, category, status } = req.body;
+    const userId = req.user?.id || req.body.userId;
+
+    if (!name || !name.trim()) {
+      return res.status(400).json({ success: false, message: 'Game name is required.' });
+    }
+
+    const min = parseInt(minPlayers, 10) || 1;
+    const max = parseInt(maxPlayers, 10) || 4;
+    const playTime = parseInt(playTimeMinutes, 10) || 30;
 
     const result = await pool.query(
       `UPDATE games 
        SET name = $1, description = $2, min_players = $3, max_players = $4, play_time_minutes = $5, category = $6, status = $7
        WHERE id = $8 AND user_id = $9
        RETURNING id, user_id, name, description, min_players, max_players, play_time_minutes, category, status`,
-      [name, description || null, minPlayers, maxPlayers, playTimeMinutes, category || null, status || 'available', id, userId]
+      [name.trim(), description?.trim() || null, min, max, playTime, category?.trim() || null, status || 'available', id, userId]
     );
 
     if (result.rows.length === 0) {
@@ -77,7 +98,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { userId } = req.query;
+    const userId = req.user?.id || req.query.userId;
 
     const result = await pool.query('DELETE FROM games WHERE id = $1 AND user_id = $2 RETURNING id', [id, userId]);
 
@@ -93,5 +114,6 @@ router.delete('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
 
 export default router;
