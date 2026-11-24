@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoardNight – Tabletop Collection & Game Night Command</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#e8ddff",
+            "surface": "#12121c",
+            "on-tertiary": "#003915",
+            "outline-variant": "#494454",
+            "outline": "#958ea0",
+            "on-background": "#e4e1ef",
+            "secondary-fixed-dim": "#cebdff",
+            "primary": "#d0bcff",
+            "surface-container-high": "#292934",
+            "surface-bright": "#393843",
+            "tertiary": "#4ae176",
+            "surface-tint": "#d0bcff",
+            "tertiary-container": "#00a74b",
+            "surface-container-highest": "#34343f",
+            "tertiary-fixed-dim": "#4ae176",
+            "inverse-on-surface": "#302f3a",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container": "#1f1f29",
+            "primary-fixed": "#e9ddff",
+            "on-surface": "#e4e1ef",
+            "on-surface-variant": "#cbc3d7",
+            "inverse-surface": "#e4e1ef",
+            "inverse-primary": "#6d3bd7",
+            "secondary-container": "#4f319c",
+            "on-secondary": "#381385",
+            "background": "#12121c",
+            "secondary": "#cebdff",
+            "tertiary-fixed": "#6bff8f",
+            "primary-container": "#a078ff",
+            "on-primary": "#3c0091",
+            "error-container": "#93000a",
+            "on-primary-fixed-variant": "#5516be",
+            "on-secondary-fixed-variant": "#4f319c",
+            "on-secondary-fixed": "#21005e",
+            "on-secondary-container": "#bea8ff",
+            "on-tertiary-fixed": "#002109",
+            "error": "#ffb4ab",
+            "on-primary-fixed": "#23005c",
+            "surface-dim": "#12121c",
+            "surface-container-lowest": "#0d0d17",
+            "primary-fixed-dim": "#d0bcff",
+            "on-primary-container": "#340080",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "surface-container-low": "#1b1b25",
+            "surface-variant": "#34343f",
+            "on-tertiary-container": "#003111"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "stats-num": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "display-hero-mobile": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "stats-num": ["24px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+            "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .glow-corona {
+      box-shadow: 0 0 35px -5px rgba(160, 120, 255, 0.35);
+    }
+    .subtle-glass {
+      background: rgba(24, 24, 36, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .primary-btn-glow {
+      box-shadow: 0 0 20px rgba(160, 120, 255, 0.45);
+    }
+    .primary-btn-glow:hover {
+      box-shadow: 0 0 28px rgba(160, 120, 255, 0.7);
+    }
+    .dot-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar (Shared Component Blueprint Anchor) -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary docked full-width top-0 sticky z-50 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-margin max-w-[1440px] mx-auto h-16">
+<!-- Brand Logo & Identity -->
+<a class="flex items-center gap-space-sm group" href="#">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-primary/40 flex items-center justify-center text-primary group-hover:border-primary transition-all duration-200">
+<span class="material-symbols-outlined text-primary text-headline-sm" data-icon="casino">casino</span>
+</div>
+<span class="text-headline-md font-headline-md tracking-tight text-primary dark:text-primary font-bold">BoardNight</span>
+</a>
+<!-- Desktop Navigation Cluster (Immutable Labels from Shared Components) -->
+<nav class="hidden md:flex items-center space-x-space-lg">
+<a class="text-primary dark:text-primary border-b-2 border-primary font-headline-sm pb-1 text-label-md font-label-md" href="#explore">Explore</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#collection">My Collection</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#planner">Planner</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#lending">Lending Tracker</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#community">Community</a>
+</nav>
+<!-- Trailing Primary Action & Icons -->
+<div class="flex items-center gap-space-md">
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<button aria-label="Search" class="p-space-xs rounded-lg hover:text-primary hover:bg-surface-container-high/50 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Notifications" class="p-space-xs rounded-lg hover:text-primary hover:bg-surface-container-high/50 transition-all duration-200 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#4ae176]"></span>
+</button>
+</div>
+<button class="hidden lg:inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant/30 text-label-md font-label-md transition-colors">
+<span>Log In</span>
+</button>
+<button class="bg-primary-container hover:bg-primary text-on-primary font-headline-sm px-space-md py-space-xs rounded-lg text-label-md font-label-md primary-btn-glow active:scale-95 transition-all duration-150">
+          Host Session
+        </button>
+</div>
+</div>
+</header>
+<main class="relative z-10">
+<!-- Atmospheric Ambient Glow Orbs -->
+<div class="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-container/10 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+<div class="absolute top-96 right-10 w-[450px] h-[350px] bg-secondary-container/15 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<!-- Hero Section -->
+<section class="max-w-[1440px] mx-auto px-margin pt-space-xl pb-16 relative">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Left Column: Copy & Conversions -->
+<div class="lg:col-span-6 space-y-space-lg">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container border border-outline-variant/40 text-primary">
+<span class="material-symbols-outlined text-sm text-tertiary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-label-sm font-label-sm tracking-wide">Tabletop Intelligence Engine v2.4</span>
+</div>
+<h1 class="text-display-hero-mobile md:text-display-hero font-display-hero tracking-tight text-on-surface">
+            Plan the night.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-fixed">Play the game.</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-xl">
+            The all-in-one command center for tabletop strategists. Track personal collections, organize epic game nights with friends, and seamlessly manage borrowed board games without the chaos.
+          </p>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="px-6 py-3 rounded-lg bg-primary-container text-on-primary font-headline-sm text-title-md primary-btn-glow hover:bg-primary transition-all duration-200 flex items-center gap-space-xs" href="#planner">
+<span>Get Started Free</span>
+<span class="material-symbols-outlined text-title-md" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="px-6 py-3 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface font-title-md text-title-md border border-outline-variant/40 hover:border-primary/50 transition-all duration-200 flex items-center gap-space-xs" href="#explore">
+<span class="material-symbols-outlined text-title-md text-primary" data-icon="explore">explore</span>
+<span>Browse Games</span>
+</a>
+</div>
+<!-- Trust Badges Under Hero CTA -->
+<div class="flex items-center gap-space-lg pt-space-sm border-t border-outline-variant/30 text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary" data-icon="sync_alt">sync_alt</span>
+<span class="text-label-sm font-label-sm">Automatic BGG Sync</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary" data-icon="group">group</span>
+<span class="text-label-sm font-label-sm">No Guest Accounts Needed</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive 3D Session Cockpit Card -->
+<div class="lg:col-span-6 relative">
+<div class="subtle-glass rounded-xl p-space-lg glow-corona relative transition-all duration-300">
+<!-- Card Header Strip -->
+<div class="flex items-center justify-between pb-space-md border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-full bg-tertiary shadow-[0_0_8px_#4ae176]"></span>
+<span class="text-label-sm font-label-sm text-tertiary tracking-wider">UPCOMING SESSION • THIS FRIDAY</span>
+</div>
+<span class="px-space-sm py-1 rounded bg-secondary-container/50 text-secondary text-label-sm font-label-sm border border-secondary/30">
+                Turn 1 at 18:30
+              </span>
+</div>
+<!-- Campaign Showcase Focus -->
+<div class="pt-space-md grid grid-cols-1 sm:grid-cols-12 gap-space-md items-center">
+<div class="sm:col-span-4 rounded-lg overflow-hidden border border-outline-variant/30 aspect-square relative group">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Close up photographic view of Twilight Imperium board game spaceship miniatures and high-end galactic command cards arranged precisely on a rich dark wooden table under cinematic ambient purple studio lighting. The scene features deep rich obsidian textures, neon lavender accents, and crystalline frosted game tokens in dark moody atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfNOJlmtKRfYH75B3rIBZZ_gxsoVGzzu-KPWI9F_YrAaqr4XYBJolvZit98DvugxJjqgCqt81ac5hWF9TWt0y0SvyaHkPyJvDTHPi4HboF0lmUiJlbr0F2jrq_eRFlAI-xSRROpZPHhfFw1riXKHWihs78KDg7GwrkHp1-abrnATvlUtGWMOwZu_xDjDIj_iYddc9dPawfNkK54xkS57HKaEnfQIGDcG_7QMRd-Ig"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-2 left-2 text-label-sm font-label-sm text-on-surface bg-surface-container-high/80 px-2 py-0.5 rounded backdrop-blur-sm">
+                  Heavy Strategy
+                </div>
+</div>
+<div class="sm:col-span-8 space-y-space-xs">
+<h3 class="text-headline-md font-headline-md text-on-surface">Twilight Imperium: Fourth Edition</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Galactic supremacy campaign. Custodians victory track enabled. 6-player fixed map layout.</p>
+<div class="flex flex-wrap items-center gap-space-xs pt-1 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span> 420 min</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" data-icon="psychology">psychology</span> Weight: 4.3 / 5.0</span>
+<span>•</span>
+<span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-xs" data-icon="room">room</span> Table Alpha</span>
+</div>
+</div>
+</div>
+<!-- Player RSVP Roster & Slots -->
+<div class="mt-space-md p-space-md rounded-lg bg-surface-container/70 border border-outline-variant/20 space-y-space-sm">
+<div class="flex items-center justify-between text-label-md font-label-md">
+<span class="text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span>
+                  Commanders Roster (5/6 Confirmed)
+                </span>
+<span class="text-tertiary text-label-sm font-label-sm">1 Open Seat</span>
+</div>
+<!-- Avatar Stack & RSVP status -->
+<div class="flex items-center justify-between">
+<div class="flex items-center -space-x-2">
+<div class="w-9 h-9 rounded-full bg-primary-container border-2 border-surface flex items-center justify-center text-on-primary font-headline-sm text-xs">MV</div>
+<div class="w-9 h-9 rounded-full bg-secondary-container border-2 border-surface flex items-center justify-center text-on-secondary font-headline-sm text-xs">SL</div>
+<div class="w-9 h-9 rounded-full bg-surface-bright border-2 border-surface flex items-center justify-center text-on-surface font-headline-sm text-xs">DK</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-high border-2 border-surface flex items-center justify-center text-primary font-headline-sm text-xs">TA</div>
+<div class="w-9 h-9 rounded-full bg-outline-variant border-2 border-surface flex items-center justify-center text-on-surface-variant font-headline-sm text-xs">JR</div>
+<div class="w-9 h-9 rounded-full border-2 border-dashed border-primary/60 flex items-center justify-center text-primary text-xs hover:border-primary cursor-pointer transition-colors bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span> Host: Marcus V.
+                  </span>
+</div>
+</div>
+</div>
+<!-- Snack & Refreshment Provisioning Tracker -->
+<div class="mt-space-sm grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="lunch_dining">lunch_dining</span>
+<div class="leading-tight">
+<p class="text-label-sm font-label-sm text-on-surface">Provisions Log</p>
+<p class="text-body-sm font-body-sm text-outline">Gourmet Baos & Espresso</p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<div class="leading-tight">
+<p class="text-label-sm font-label-sm text-on-surface">Custodian Status</p>
+<p class="text-body-sm font-body-sm text-tertiary">Premium Sleeved (100%)</p>
+</div>
+</div>
+</div>
+<!-- Floating Metric Pills Over Card -->
+<div class="absolute -bottom-4 -left-4 px-3 py-1.5 rounded-lg bg-surface-bright/90 border border-primary/40 backdrop-blur-md shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="military_tech">military_tech</span>
+<span class="text-label-sm font-label-sm text-on-surface">248 Games Catalogued</span>
+</div>
+<div class="absolute -top-3 -right-3 px-3 py-1.5 rounded-lg bg-surface-container-high/95 border border-tertiary/40 backdrop-blur-md shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="lock_reset">lock_reset</span>
+<span class="text-label-sm font-label-sm text-on-surface">99.8% On-time Return</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Platform Statistics Bar -->
+<section class="border-y border-outline-variant/20 bg-surface-container-lowest/60 backdrop-blur-sm py-space-lg">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter text-center divide-x-0 md:divide-x divide-outline-variant/20">
+<div class="px-space-md py-space-xs">
+<p class="text-stats-num font-stats-num text-primary">45,000+</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Game Nights Coordinated</p>
+</div>
+<div class="px-space-md py-space-xs">
+<p class="text-stats-num font-stats-num text-secondary">180,000+</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Board Games Tracked</p>
+</div>
+<div class="px-space-md py-space-xs">
+<p class="text-stats-num font-stats-num text-tertiary">99.8%</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Lent Games Returned Intact</p>
+</div>
+<div class="px-space-md py-space-xs">
+<p class="text-stats-num font-stats-num text-on-surface">4.9 / 5.0</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">From 12,000+ Dedicated Groups</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Features & Benefits Bento Grid -->
+<section class="max-w-[1440px] mx-auto px-margin py-space-xl" id="planner">
+<div class="text-center max-w-2xl mx-auto mb-14 space-y-space-xs">
+<span class="text-label-md font-label-md text-primary tracking-widest uppercase">System Capabilities</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Engineered for Frictionless Tabletop Hospitality</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Stop herding cats on chaotic group messaging chats. Bring precision scheduling, automated inventory custody, and collective voting to your gaming circle.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Feature 1: Collection Command -->
+<div class="subtle-glass rounded-xl p-space-lg relative group hover:-translate-y-1 transition-all duration-300 hover:border-primary/50">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-space-md border border-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-headline-md" data-icon="shelves">shelves</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-space-xs">Collection Command</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-space-md">
+            Bi-directional BoardGameGeek synchronization. Track custom expansions, play counts, card sleeve specifications, and box weight indexes in a bespoke dark UI.
+          </p>
+<ul class="space-y-space-xs text-body-sm font-body-sm text-outline">
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> One-click BGG Collection Import</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Sleeve sizing & insert readiness</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Detailed play history logs</li>
+</ul>
+</div>
+<!-- Feature 2: Game Night Planner -->
+<div class="subtle-glass rounded-xl p-space-lg relative group hover:-translate-y-1 transition-all duration-300 hover:border-primary/50 border-primary/30">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-space-md border border-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-headline-md" data-icon="event_available">event_available</span>
+</div>
+<div class="absolute top-4 right-4 px-2 py-0.5 rounded text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Core Engine</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-space-xs">Game Night Planner</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-space-md">
+            Streamlined invitations without forcing friends to make new accounts. Conduct democratic pre-game voting, manage table capacities, and coordinate snacks seamlessly.
+          </p>
+<ul class="space-y-space-xs text-body-sm font-body-sm text-outline">
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Frictionless RSVP magic links</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Ranked-choice game voting polls</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Dietary allergy & refreshment rosters</li>
+</ul>
+</div>
+<!-- Feature 3: Trust Lending Tracker -->
+<div class="subtle-glass rounded-xl p-space-lg relative group hover:-translate-y-1 transition-all duration-300 hover:border-primary/50" id="lending">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-space-md border border-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-headline-md" data-icon="handshake">handshake</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-space-xs">Trust Lending Tracker</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-space-md">
+            Never forget who has your copy of Brass again. Log loans with photographic component checks, agreed return dates, and friendly automatic WhatsApp/SMS reminders.
+          </p>
+<ul class="space-y-space-xs text-body-sm font-body-sm text-outline">
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Custody verification timestamps</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Courteous automated return nudges</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-sm" data-icon="check_circle">check_circle</span> Component integrity checklists</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Popular / Featured Board Games Showcase -->
+<section class="max-w-[1440px] mx-auto px-margin py-space-xl border-t border-outline-variant/20" id="explore">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-space-md">
+<div>
+<span class="text-label-md font-label-md text-primary tracking-widest uppercase">Popular In The Community</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mt-1">Trending Tabletop Titles</h2>
+</div>
+<!-- Filter Tabs / Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-2 md:pb-0">
+<button class="px-space-md py-1.5 rounded-full text-label-md font-label-md bg-primary-container/20 text-primary border border-primary/40 whitespace-nowrap">
+            All Weight
+          </button>
+<button class="px-space-md py-1.5 rounded-full text-label-md font-label-md bg-surface-container text-on-surface-variant hover:text-on-surface border border-outline-variant/30 whitespace-nowrap transition-colors">
+            Heavy Euro
+          </button>
+<button class="px-space-md py-1.5 rounded-full text-label-md font-label-md bg-surface-container text-on-surface-variant hover:text-on-surface border border-outline-variant/30 whitespace-nowrap transition-colors">
+            Cooperative
+          </button>
+<button class="px-space-md py-1.5 rounded-full text-label-md font-label-md bg-surface-container text-on-surface-variant hover:text-on-surface border border-outline-variant/30 whitespace-nowrap transition-colors">
+            Social Deduction
+          </button>
+</div>
+</div>
+<!-- Game Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Game 1: Dune Imperium -->
+<div class="subtle-glass rounded-xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:border-primary/60 flex flex-col">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro studio photograph of an intricate science fiction desert board game setup inspired by Dune Imperium. Custom wooden agent workers, glittering water droplets tokens, and ornate faction conflict banners lie neatly on a sand-colored stylized board under atmospheric deep purple and amber side rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgmpRED5HR0S7DE709YGddlMeHVGpul89Vo5FQcfdUbpzE9LoiJJAXH4C2taDu0qTQMt4HjPjpI9kyyGIzljY4aVSKgqRBLM7UYWucajsntZTBpTmw5yb2I9GhxEozGENpHSBqWStbBf44X6ZNFOA9VgUsZK6qG-TY30ns9DdUTel4w_V4Ig5iNrbE55T6M98uw77uKz1Uhd-R0QfGxikkybrEy_jSNVkgowyKDsk"/>
+<div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-label-sm font-label-sm text-tertiary border border-outline-variant/30">
+              Rank #7 Overall
+            </div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1">
+<span>1-4 Players</span>
+<span>60-120 min</span>
+</div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface group-hover:text-primary transition-colors">Dune: Imperium</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Deck-building, worker placement, and tense military conflict on Arrakis.</p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/20 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Weight: <strong class="text-on-surface font-semibold">3.0 / 5</strong></span>
+<span class="text-primary hover:underline cursor-pointer flex items-center gap-0.5">Plan Match <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span></span>
+</div>
+</div>
+</div>
+<!-- Game 2: Ark Nova -->
+<div class="subtle-glass rounded-xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:border-primary/60 flex flex-col">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High fidelity close up image of modern eurogame zoo management cards and custom animal enclosure hexagonal tiles arranged neatly on dark slate grey playmat. The scene is bathed in moody nocturnal blue and neon violet lounge lights creating an inviting and sophisticated gaming atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd-AylZqsVzn5N-yl20yl6kbdDXxIBWcgebRuKZ_fnDZV7abM68FZq2tDYE7rBkcUqqlUxGyGrov4rpEat2HD69Hc4UjQDNNpy11noj1pEl4vzL9v07-c_NBLqBPManGb2IW42GfKv_-kTOw2fUHQVilaMex2V5gHlIKamHyOHZzt2eF7QBlf4wZpBjL-84LnZc6uEZXKE-iNdlB5Bg9F01NT_aeLEodRgTs9GHy8"/>
+<div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-label-sm font-label-sm text-tertiary border border-outline-variant/30">
+              Rank #4 Overall
+            </div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1">
+<span>1-4 Players</span>
+<span>90-150 min</span>
+</div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface group-hover:text-primary transition-colors">Ark Nova</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Plan and design a modern, scientifically managed zoological garden.</p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/20 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Weight: <strong class="text-on-surface font-semibold">3.7 / 5</strong></span>
+<span class="text-primary hover:underline cursor-pointer flex items-center gap-0.5">Plan Match <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span></span>
+</div>
+</div>
+</div>
+<!-- Game 3: Brass Birmingham -->
+<div class="subtle-glass rounded-xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:border-primary/60 flex flex-col">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Moody cinematic photograph of Brass Birmingham industrial canal network board game tiles, iron tokens, and brewery barrels set on a dark nocturnal playing surface. Backlit by deep violet neon and warm incandescent reflections highlighting the premium linen finish on Victorian era cards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAurHJafV6r0ssTG7LIvFIvCkQaf3IsrIiIKWM6570UjNfI9PvRTkXtf-fkOVGtvciuujmWFDLN4YJnWHpRkI_nWE8tB7iZDfA9bNx2lWQQMV0fokNC_jrxkn6F97wAtExEzYzs09iqjJr002CKsEfxygADqEwQ2gWlgL6NSNpKlrB7ZOO2vKhb_r-TNDUz3w3_f6Ws9Lv05c8BNmkom-kv1GlEOFgTUsJ0fBkIRjM"/>
+<div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-label-sm font-label-sm text-tertiary border border-outline-variant/30">
+              Rank #1 Overall
+            </div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1">
+<span>2-4 Players</span>
+<span>60-120 min</span>
+</div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface group-hover:text-primary transition-colors">Brass: Birmingham</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Economic strategy during the Industrial Revolution with canal and rail eras.</p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/20 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Weight: <strong class="text-on-surface font-semibold">3.9 / 5</strong></span>
+<span class="text-primary hover:underline cursor-pointer flex items-center gap-0.5">Plan Match <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span></span>
+</div>
+</div>
+</div>
+<!-- Game 4: Root -->
+<div class="subtle-glass rounded-xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:border-primary/60 flex flex-col">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Artistic tabletop macro shot of Root woodland woodland creatures faction meeples including feline warriors, avian commanders, and woodland mice tokens on an illustrated forest autumn clearing board. Illuminated by atmospheric deep violet studio lights with glowing highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4yhsc4kQSzYc3EfwuREXNB0GQw_BQPubov2DJ8TQ-OEE99VmGz6wh3Niuw7lUBVR6p96bg0CMqHyiWBbjxDLX8EeFHHTw7VjQsE1Ll9pZc2bB-OnIr8IcA5Ir8KuLjLMlQ3tMNSVMHQ9z1iW3qWT1lbP05Fp6bPS1I_gFdftaxCpo5fvzQZw7cZH1GJhrKYOcSfbw-JYFWiUeqbLp_IPYs6nQ0fxE1J3RG7HtGw"/>
+<div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-label-sm font-label-sm text-tertiary border border-outline-variant/30">
+              Asymmetric Warfare
+            </div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1">
+<span>2-4 Players</span>
+<span>60-90 min</span>
+</div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface group-hover:text-primary transition-colors">Root</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">A game of woodland might and right with completely asymmetric player powers.</p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/20 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Weight: <strong class="text-on-surface font-semibold">3.8 / 5</strong></span>
+<span class="text-primary hover:underline cursor-pointer flex items-center gap-0.5">Plan Match <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works 3-Step Walkthrough -->
+<section class="max-w-[1440px] mx-auto px-margin py-space-xl border-t border-outline-variant/20 relative">
+<div class="text-center max-w-2xl mx-auto mb-16 space-y-space-xs">
+<span class="text-label-md font-label-md text-primary tracking-widest uppercase">Frictionless Workflow</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">From Vault To Table in Three Steps</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Designed so you spend less time coordinating schedules and more time rolling dice.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter relative">
+<!-- Step 1 -->
+<div class="subtle-glass rounded-xl p-space-lg relative space-y-space-sm">
+<div class="text-display-hero font-display-hero text-outline-variant/40 leading-none select-none">01</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Catalogue Your Vault</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Connect your BGG profile or scan barcodes with your smartphone camera. Keep tabs on edition year, custom components, and box sleeve health automatically.
+          </p>
+<div class="pt-space-xs flex items-center gap-2 text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span>Instant barcode scanner enabled</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="subtle-glass rounded-xl p-space-lg relative space-y-space-sm">
+<div class="text-display-hero font-display-hero text-outline-variant/40 leading-none select-none">02</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Rally Your Party</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Broadcast a game night proposal via instant link. Friends vote on candidate games with ranked choices, confirm attendance, and log who brings pizza or craft beer.
+          </p>
+<div class="pt-space-xs flex items-center gap-2 text-secondary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="how_to_vote">how_to_vote</span>
+<span>Live weighted poll mechanics</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="subtle-glass rounded-xl p-space-lg relative space-y-space-sm">
+<div class="text-display-hero font-display-hero text-outline-variant/40 leading-none select-none">03</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Play & Track Custody</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            When friends borrow copies at the end of the evening, tap their contact to initiate custody logging. Both parties receive a confirmation with agreed return milestones.
+          </p>
+<div class="pt-space-xs flex items-center gap-2 text-tertiary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span>Zero awkward missing-box moments</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof & Host Testimonial -->
+<section class="max-w-[1440px] mx-auto px-margin py-space-lg">
+<div class="subtle-glass rounded-xl p-space-xl border-primary/30 relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-3xl mx-auto text-center space-y-space-md">
+<div class="flex justify-center text-primary">
+<span class="material-symbols-outlined text-headline-lg" data-icon="format_quote">format_quote</span>
+</div>
+<blockquote class="text-headline-md md:text-headline-lg font-headline-md text-on-surface">
+            “Before BoardNight, tracking 300+ games and scheduling our bi-weekly 6-player campaigns across Discord was an absolute nightmare. The lending tracker alone rescued three out-of-print Kickstarters from oblivion.”
+          </blockquote>
+<div class="pt-space-xs">
+<p class="font-headline-sm text-headline-sm text-primary">Elena Rostova</p>
+<p class="text-body-sm font-body-sm text-outline">Lead Tabletop Organizer • Brooklyn Strategy Guild (420+ Members)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- High Conversion Call to Action Banner -->
+<section class="max-w-[1440px] mx-auto px-margin py-space-xl">
+<div class="relative rounded-2xl bg-gradient-to-b from-surface-container-high to-surface-container-low border border-primary/40 p-space-xl md:p-16 text-center overflow-hidden glow-corona">
+<div class="max-w-2xl mx-auto space-y-space-md relative z-10">
+<div class="inline-flex items-center gap-space-xs px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/40 text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span> Free forever for groups up to 10 players
+          </div>
+<h2 class="text-display-hero-mobile md:text-display-hero font-display-hero text-on-surface tracking-tight">
+            Ready to upgrade your tabletop game nights?
+          </h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">
+            Join thousands of hosts, collectors, and board game enthusiasts. Catalogue your shelves and launch your next session in under two minutes.
+          </p>
+<div class="pt-space-sm flex flex-col sm:flex-row items-center justify-center gap-space-md">
+<button class="w-full sm:w-auto px-8 py-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-title-md primary-btn-glow active:scale-95 transition-all duration-150">
+              Host Your First Night Free
+            </button>
+<a class="w-full sm:w-auto px-6 py-4 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface font-title-md text-title-md border border-outline-variant/30 transition-colors" href="#community">
+              Explore Community Hub
+            </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Execution Blueprint) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-primary docked full-width bottom border-t border-outline-variant/20 flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin py-space-lg max-w-[1440px] mx-auto gap-space-md">
+<!-- Brand & Copyright -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md text-center sm:text-left">
+<a class="text-headline-sm font-headline-sm text-on-surface dark:text-on-surface flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="casino">casino</span>
+<span>BoardNight</span>
+</a>
+<span class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm">
+          © 2025 BoardNight. Crafted for nocturnal tabletop strategists.
+        </span>
+</div>
+<!-- Links (Immutable Strings from Shared Components JSON) -->
+<nav class="flex flex-wrap items-center justify-center gap-space-md transition-opacity duration-150 hover:opacity-80">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#rules">Rules & Guides</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#handbook">Host Handbook</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#api">API & BGG Sync</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#privacy">Privacy Policy</a>
+<a class="text-primary dark:text-primary font-label-md text-label-md hover:text-primary dark:hover:text-primary transition-colors duration-200 flex items-center gap-1" href="#discord">
+<span class="material-symbols-outlined text-sm" data-icon="forum">forum</span>
+<span>Discord Server</span>
+</a>
+</nav>
+</div>
+</footer>
+</body></html>

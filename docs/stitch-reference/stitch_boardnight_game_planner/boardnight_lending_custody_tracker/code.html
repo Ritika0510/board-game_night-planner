@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoardNight — Borrowed Games</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#34343f",
+            "tertiary": "#4ae176",
+            "on-primary-container": "#340080",
+            "on-surface": "#e4e1ef",
+            "primary": "#d0bcff",
+            "on-primary": "#3c0091",
+            "surface-container-high": "#292934",
+            "outline-variant": "#494454",
+            "primary-fixed-dim": "#d0bcff",
+            "on-primary-fixed-variant": "#5516be",
+            "primary-fixed": "#e9ddff",
+            "on-background": "#e4e1ef",
+            "on-secondary-fixed": "#21005e",
+            "outline": "#958ea0",
+            "surface-container-highest": "#34343f",
+            "error-container": "#93000a",
+            "tertiary-container": "#00a74b",
+            "secondary-fixed": "#e8ddff",
+            "surface-tint": "#d0bcff",
+            "background": "#12121c",
+            "inverse-on-surface": "#302f3a",
+            "on-tertiary": "#003915",
+            "on-tertiary-fixed-variant": "#005321",
+            "secondary-container": "#4f319c",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-surface-variant": "#cbc3d7",
+            "on-error-container": "#ffdad6",
+            "error": "#ffb4ab",
+            "on-primary-fixed": "#23005c",
+            "inverse-primary": "#6d3bd7",
+            "on-tertiary-container": "#003111",
+            "on-secondary": "#381385",
+            "tertiary-fixed": "#6bff8f",
+            "on-secondary-fixed-variant": "#4f319c",
+            "secondary": "#cebdff",
+            "surface-container-lowest": "#0d0d17",
+            "primary-container": "#a078ff",
+            "secondary-fixed-dim": "#cebdff",
+            "on-secondary-container": "#bea8ff",
+            "surface": "#12121c",
+            "on-tertiary-fixed": "#002109",
+            "inverse-surface": "#e4e1ef",
+            "surface-dim": "#12121c",
+            "surface-container-low": "#1b1b25",
+            "surface-container": "#1f1f29",
+            "on-error": "#690005",
+            "surface-bright": "#393843"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "label-md": [
+              "Inter"
+            ],
+            "headline-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "display-hero-mobile": [
+              "Plus Jakarta Sans"
+            ],
+            "body-md": [
+              "Inter"
+            ],
+            "body-sm": [
+              "Inter"
+            ],
+            "headline-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "stats-num": [
+              "Plus Jakarta Sans"
+            ],
+            "body-lg": [
+              "Inter"
+            ],
+            "label-sm": [
+              "Inter"
+            ],
+            "display-hero": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-md": [
+              "Plus Jakarta Sans"
+            ],
+            "title-md": [
+              "Plus Jakarta Sans"
+            ]
+          },
+          "fontSize": {
+            "label-md": [
+              "13px",
+              {
+                "lineHeight": "18px",
+                "letterSpacing": "0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-lg": [
+              "28px",
+              {
+                "lineHeight": "36px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "700"
+              }
+            ],
+            "display-hero-mobile": [
+              "30px",
+              {
+                "lineHeight": "36px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "800"
+              }
+            ],
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+            "body-sm": [
+              "12px",
+              {
+                "lineHeight": "18px",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-sm": [
+              "18px",
+              {
+                "lineHeight": "26px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "stats-num": [
+              "24px",
+              {
+                "lineHeight": "28px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "800"
+              }
+            ],
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+            "label-sm": [
+              "11px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "600"
+              }
+            ],
+            "display-hero": [
+              "40px",
+              {
+                "lineHeight": "48px",
+                "letterSpacing": "-0.03em",
+                "fontWeight": "800"
+              }
+            ],
+            "headline-md": [
+              "22px",
+              {
+                "lineHeight": "30px",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "700"
+              }
+            ],
+            "title-md": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom subtle nocturne scrollbars and glows */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d0d17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #34343f;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #494454;
+    }
+    .corona-glow:hover {
+      box-shadow: 0 0 24px -2px rgba(139, 92, 246, 0.35);
+      border-color: rgba(167, 139, 250, 0.6);
+    }
+    .glow-dot-emerald {
+      box-shadow: 0 0 8px #22c55e;
+    }
+    .glow-dot-amber {
+      box-shadow: 0 0 8px #f59e0b;
+    }
+  </style>
+</head>
+<body class="bg-[#09090F] text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- ================= TOP GLOBAL NAVIGATION ================= -->
+<!-- Conforms to TopNavBar shared component: active 'Lending Tracker' -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-margin max-w-[1440px] mx-auto h-16">
+<!-- Left: Logo & Navigation Cluster -->
+<div class="flex items-center gap-space-xl">
+<a class="text-headline-md font-headline-md tracking-tight text-primary dark:text-primary font-bold flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="casino" style="font-variation-settings: 'FILL' 1;">casino</span>
+<span>BoardNight</span>
+</a>
+<!-- Desktop Navigation Items -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Explore</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">My Collection</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Planner</a>
+<!-- Active Tab: Lending Tracker -->
+<a class="text-primary dark:text-primary border-b-2 border-primary font-headline-sm pb-1 flex items-center gap-1" href="#">
+<span>Lending Tracker</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Community</a>
+</nav>
+</div>
+<!-- Right: Search, Actions, Profile -->
+<div class="flex items-center gap-space-md">
+<!-- Search Action -->
+<div class="relative hidden lg:block w-56">
+<span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+</span>
+<input class="w-full pl-8 pr-3 py-1.5 text-body-sm font-body-sm rounded-lg bg-surface-container-lowest border border-outline-variant/30 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search loans, games..." type="text"/>
+</div>
+<button aria-label="Notifications" class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high/50 transition-all duration-200 relative" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full ring-2 ring-surface"></span>
+</button>
+<button class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-outline-variant/40 hover:text-primary transition-all duration-200 text-label-md font-label-md active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+<span>Host Session</span>
+</button>
+<!-- User Avatar with Status Ring -->
+<div class="relative flex items-center justify-center pl-1">
+<div class="w-9 h-9 rounded-full ring-2 ring-primary/80 p-0.5 overflow-hidden bg-surface-container-high">
+<img alt="User avatar with status ring" class="w-full h-full object-cover rounded-full" data-alt="Close up photographic avatar of a focused board game strategist sitting in an ambient illuminated game room with purple nocturnal neon accents, wearing stylish casual attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNYagFyObD0ae_FfyVMYFOiLafFvVuVIIpZaeDZF8ZeXb4gdV1FQPBnJuPrXHexTum8eGSqWNm4NN4svjOHibjKGc6DGnbLmu6k5x2KejjvYM40TuOPzmpk0h-_EKn2arDp51lBF327Ho2_gGQZL8IEfR_W1iF0q67-hfPII_GQRT2CBwZ3-USUIdMDA_kPw8kV_GVZ5PWnDlo9eFRA8uqZGs2PN03RdTZfVhMclA"/>
+</div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-tertiary-container ring-2 ring-surface"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN CONTENT WRAPPER ================= -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin py-space-lg md:py-space-xl flex flex-col gap-space-xl">
+<!-- HEADER HERO SECTION -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg pb-space-md border-b border-outline-variant/20">
+<div>
+<div class="flex items-center gap-space-sm mb-1.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container/30 border border-secondary-container text-secondary text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Peer-to-Peer Vault System
+          </span>
+<span class="text-body-sm font-body-sm text-outline">• Updated 4m ago</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+<span>Borrowed Games</span>
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl mt-1">
+          Real-time custody tracking, component verification, return due dates, and automated polite nudges.
+        </p>
+</div>
+<!-- Action Button Group -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-high/70 hover:bg-surface-container-highest text-on-surface border border-outline-variant/40 text-label-md font-label-md transition-all duration-150 hover:border-primary/40 active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="insights">insights</span>
+<span>Trust Score Insights (99.8%)</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-high/70 hover:bg-surface-container-highest text-on-surface border border-outline-variant/40 text-label-md font-label-md transition-all duration-150 hover:border-primary/40 active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="download">download</span>
+<span>Export Custody Audit</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-semibold text-label-md font-label-md shadow-[0_0_16px_rgba(139,92,246,0.35)] transition-all duration-150 active:scale-95 border-t border-white/20" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+<span>+ Log New Loan</span>
+</button>
+</div>
+</div>
+<!-- METRICS OVERVIEW ROW (4 Stat Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Active Lent Out -->
+<div class="p-space-lg rounded-xl bg-[#181824]/60 backdrop-blur-md border border-white/[0.08] hover:border-primary/40 transition-all duration-200 relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="outbox">outbox</span>
+            Active Lent Out
+          </span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/10 text-primary border border-primary/20">3 Games</span>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<div class="text-stats-num font-stats-num text-on-surface tracking-tight">3 Games</div>
+<span class="text-body-sm font-body-sm text-tertiary font-medium">Est. $320 value</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline truncate" title="Root: Underworld, Arkham Horror: Dunwich, Brass: Birmingham">
+          Root: Underworld, Arkham Horror, Brass
+        </p>
+</div>
+<!-- Card 2: Currently In Custody (Borrowed) -->
+<div class="p-space-lg rounded-xl bg-[#181824]/60 backdrop-blur-md border border-white/[0.08] hover:border-primary/40 transition-all duration-200 relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="move_to_inbox">move_to_inbox</span>
+            Currently In Custody
+          </span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container/40 text-secondary border border-secondary/20">Borrowed</span>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<div class="text-stats-num font-stats-num text-on-surface tracking-tight">1 Game</div>
+<span class="text-body-sm font-body-sm text-primary font-medium">Due in 4 days</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline truncate" title="Heat: Pedal to the Metal from Alex Thorne">
+          Heat: Pedal to the Metal (Alex Thorne)
+        </p>
+</div>
+<!-- Card 3: Overdue Alert -->
+<div class="p-space-lg rounded-xl bg-[#181824]/60 backdrop-blur-md border border-white/[0.08] hover:border-tertiary/40 transition-all duration-200 relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/10 rounded-full blur-2xl group-hover:bg-tertiary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary" data-icon="alarm_on">alarm_on</span>
+            Overdue Alert
+          </span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary/15 text-tertiary border border-tertiary/30">Pristine Record</span>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<div class="text-stats-num font-stats-num text-on-surface tracking-tight">0 Overdue</div>
+<span class="text-body-sm font-body-sm text-tertiary font-medium">100% on-time</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline">
+          All active borrowers are inside return horizons
+        </p>
+</div>
+<!-- Card 4: Community Trust Rating -->
+<div class="p-space-lg rounded-xl bg-[#181824]/60 backdrop-blur-md border border-white/[0.08] hover:border-primary/40 transition-all duration-200 relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary-container/10 rounded-full blur-2xl group-hover:bg-primary-container/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="shield">shield</span>
+            Community Trust
+          </span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Tier 1 Lender</span>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<div class="text-stats-num font-stats-num text-on-surface tracking-tight">99.8%</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant font-medium">58 handoffs</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline">
+          58 total returns without missing components
+        </p>
+</div>
+</section>
+<!-- SEGMENTED NAVIGATION & SEARCH/FILTERS -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md border-b border-outline-variant/20 pb-space-sm">
+<!-- Segmented Control Tabs -->
+<div class="inline-flex p-1 rounded-xl bg-surface-container-lowest border border-outline-variant/30">
+<button class="px-4 py-2 rounded-lg text-label-md font-label-md bg-secondary-container/40 text-on-surface font-semibold shadow-sm border border-primary/30 flex items-center gap-2" type="button">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Games I Lent to Friends (3)</span>
+</button>
+<button class="px-4 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-all duration-150 flex items-center gap-2" type="button">
+<span>Games I'm Borrowing (1)</span>
+</button>
+<button class="px-4 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-all duration-150 flex items-center gap-2" type="button">
+<span>Loan History Archive (48)</span>
+</button>
+</div>
+<!-- Quick Filter / Sort Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto py-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider mr-1">Filter:</span>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-primary/15 border border-primary/50 text-white">All Due Dates</button>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 border border-outline-variant/30 text-on-surface-variant hover:border-outline transition-colors">Due Soon (2)</button>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 border border-outline-variant/30 text-on-surface-variant hover:border-outline transition-colors">Component Verified</button>
+</div>
+</div>
+<!-- MAIN TWO-COLUMN WORKSPACE: Active Loans (Col 8) & Sidebar Radar (Col 4) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- ================= LEFT COLUMN: ACTIVE LENT GAMES (8 Cols) ================= -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span>Out on Loan &amp; Verification Vault</span>
+<span class="text-body-sm font-body-sm font-normal text-outline">(3 active sessions)</span>
+</h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Sorting: By urgency (Closest due date)</span>
+</div>
+<!-- ================= CARD 1: ROOT THE UNDERWORLD EXPANSION ================= -->
+<article class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] corona-glow transition-all duration-200 flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row gap-space-md">
+<!-- Cover Art Thumbnail (1:1 Ratio) -->
+<div class="w-full sm:w-32 h-32 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0 border border-white/10 relative">
+<img alt="Root: The Underworld Expansion box artwork" class="w-full h-full object-cover" data-alt="Atmospheric tabletop game box art of woodland strategy board game Root Underworld showing deep forest creatures underground tunnels and raven factions in cinematic dark purple lighting style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFAR05k8nUsiT0gKIemDK_brKNkwo6zMHXGdaBv8kOVxuK8tU5g228eMoG5TikrmN30-D2dEMKokIGfXHLti0qonJlMAoys9HVidCVfXUJBdgJ2boOUciQSNmuM6Gx_KkjOGcRsLvpwfgFhabfIqXIKE1OKgsdobVP7LQ77PG6Iw1_dYkOlnu-kNfTDWpsWU3pGk88qvNI7M3zeUJRr0RsF6hkvEbtI0FkblF2198"/>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[10px] text-white font-mono border border-white/10">EXPANSION</div>
+</div>
+<!-- Card Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<h3 class="text-title-md font-title-md text-on-surface font-bold tracking-tight">Root: The Underworld Expansion</h3>
+<!-- Amber Warning Badge -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-label-sm font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-amber-400 glow-dot-amber"></span>
+                    Due in 2 days (Nov 2)
+                  </span>
+</div>
+<!-- Borrower Details -->
+<div class="flex flex-wrap items-center gap-y-1 gap-x-space-md text-body-sm font-body-sm text-on-surface-variant mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="person">person</span>
+<span>Lent to: <strong class="text-on-surface font-semibold">David Chen</strong></span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary ml-0.5"></span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span>Lent on: Oct 14, 2025</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="currency_exchange">currency_exchange</span>
+<span>Deposit: Soft Guarantee</span>
+</div>
+</div>
+<!-- Component Check Box & Photo Proof -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/80 border border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5 flex-shrink-0" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium">Component Handover Audit:</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">32/32 Wooden Meeples, 2 Maps, Full Dragon Shield Sleeves verified at handover.</p>
+</div>
+</div>
+<!-- Photographic verification thumbnail attached -->
+<div class="flex items-center gap-2 self-start sm:self-center pl-7 sm:pl-0">
+<div class="group/thumb relative cursor-pointer" title="Click to view 4K handover verification photo">
+<div class="w-14 h-10 rounded border border-primary/50 overflow-hidden bg-black/60 relative">
+<img alt="Root handover photographic verification proof" class="w-full h-full object-cover transition-transform group-hover/thumb:scale-110" data-alt="High resolution tabletop verification photograph showing neatly arranged wooden game meeples, game board map and pristine purple card sleeves laid out on a dark neoprene mat under ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz-h3D1p8cqWm1PySqQucqVTuTkcugTUNOqO4qaj16eXp01bzTXtb5g7VQKKtnI2uCGj-7fwlh9WEefB9vaEN7Cb2CK2Sn00_mpoc4ZEXvo1_HIz14dV3IZuvBbxH6KmXA0DX2MZ7ul31Xv1PM-0iPHAtd2xPKzn5g2EL3VxvcEu66ZLc0zKGXHpN5o9xaWEEg6wquUIEVrZZ0fcZQOqKfSWtk5f3A88IYTOPPUE0"/>
+<span class="absolute inset-0 bg-primary/20 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="zoom_in">zoom_in</span>
+</span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-medium">Photo Attached</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Buttons Strip -->
+<div class="pt-space-sm border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="mark_chat_read">mark_chat_read</span>
+<span>Last confirmed receipt via SMS 5 days ago</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-highest text-on-surface border border-outline-variant/30 text-label-md font-label-md transition-all active:scale-95 flex items-center gap-1.5 hover:border-outline" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="update">update</span>
+<span>Extend Loan</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-200 border border-amber-500/40 text-label-md font-label-md transition-all active:scale-95 flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-amber-300" data-icon="chat">chat</span>
+<span>Send Courteous WhatsApp/SMS Ping</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary-container/90 text-label-md font-label-md font-semibold transition-all active:scale-95 flex items-center gap-1.5 shadow-[0_0_12px_rgba(139,92,246,0.25)]" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span>Mark Returned &amp; Inspect</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ================= CARD 2: ARKHAM HORROR THE DUNWICH LEGACY ================= -->
+<article class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] corona-glow transition-all duration-200 flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row gap-space-md">
+<!-- Cover Art Thumbnail -->
+<div class="w-full sm:w-32 h-32 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0 border border-white/10 relative">
+<img alt="Arkham Horror: The Dunwich Legacy box art" class="w-full h-full object-cover" data-alt="Cover illustration of an eerie gothic board game box Arkham Horror Dunwich Legacy depicting lovecraftian horrors investigative notebooks and arcane artifacts in dark teal and deep obsidian tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA7ts-yd_dQiBuG8jymVZv_eI0GL_AKL4kQxs1twSAk5mv5ZDu3WUsM637S0fSv2FPXiWfdJQHWm4K51Nlh3nOBg_p7YWhm9L2GqHwQmbd8xu1ZhRGJeYisFBs8OBZsu56_tqhre6j-CmaDupfN0Dx3BubpKGEAk3JRs_AcUviKd2JuNDPeMT55jnHAvMyT8cxx8QSJhwoP2MLANVubpQSEMoU9jD5II8fPjBsswE"/>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[10px] text-white font-mono border border-white/10">CAMPAIGN</div>
+</div>
+<!-- Card Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<h3 class="text-title-md font-title-md text-on-surface font-bold tracking-tight">Arkham Horror: The Dunwich Legacy</h3>
+<!-- Green On-Track Badge -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/30 border border-tertiary/40 text-tertiary text-label-sm font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary glow-dot-emerald"></span>
+                    Due in 9 days (Nov 9)
+                  </span>
+</div>
+<!-- Borrower Details -->
+<div class="flex flex-wrap items-center gap-y-1 gap-x-space-md text-body-sm font-body-sm text-on-surface-variant mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="person">person</span>
+<span>Lent to: <strong class="text-on-surface font-semibold">Sarah Kelly</strong></span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary ml-0.5"></span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span>Lent on: Oct 02, 2025</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified">verified</span>
+<span>Loan ID: #AH-8831</span>
+</div>
+</div>
+<!-- Component Check Box -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/80 border border-outline-variant/30 flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5 flex-shrink-0" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<p class="text-body-sm font-body-sm text-on-surface font-medium">Component Handover Audit:</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Campaign log sheet included, card count 312/312 verified in Ultra-Pro matte clear sleeves.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Buttons Strip -->
+<div class="pt-space-sm border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="history_edu">history_edu</span>
+<span>Scenario 4 currently in playthrough</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-highest text-on-surface border border-outline-variant/30 text-label-md font-label-md transition-all active:scale-95 flex items-center gap-1.5 hover:border-outline" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="description">description</span>
+<span>View Loan Agreement</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-highest text-on-surface border border-outline-variant/30 text-label-md font-label-md transition-all active:scale-95 flex items-center gap-1.5 hover:border-outline" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="fact_check">fact_check</span>
+<span>Log Check-in</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-secondary-container/60 hover:bg-secondary-container text-secondary text-label-md font-label-md font-semibold transition-all active:scale-95 flex items-center gap-1.5 border border-secondary/30" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+<span>Ping Sarah</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ================= CARD 3: BRASS BIRMINGHAM (DELUXE) ================= -->
+<article class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] corona-glow transition-all duration-200 flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row gap-space-md">
+<!-- Cover Art Thumbnail -->
+<div class="w-full sm:w-32 h-32 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0 border border-white/10 relative">
+<img alt="Brass: Birmingham Deluxe Edition box artwork" class="w-full h-full object-cover" data-alt="Deluxe industrial board game cover Brass Birmingham showing 19th century canal industrialist artwork with atmospheric smoke warm lamplight and gold embossed deluxe lettering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfO4I23xZh68ls_DcceC9HPX3cYcGD8bB1LoiHye_LviDKbBySVy7ltLiMmi_FWFxOlXoyDLnidu5cnphN_1gPSByRu4jnnUpi0u4m-FRm6MopsPb8xeTofT2_5e-74ypsOfDXAE_ScGEZiQt_46vbopPcR9hypFU_WPpJBP4d8xvpfPhn1mmHebQDbFH6H3hlGSkXPfXi1DhFTPTX2_ybihti10gWH5tOr0pxypU"/>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-primary/90 text-[10px] text-black font-bold font-mono">DELUXE</div>
+</div>
+<!-- Card Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<h3 class="text-title-md font-title-md text-on-surface font-bold tracking-tight">Brass: Birmingham (Deluxe Edition)</h3>
+<!-- Tomorrow Amber Warning Badge -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-label-sm font-label-sm font-semibold animate-pulse">
+<span class="w-2 h-2 rounded-full bg-amber-400 glow-dot-amber"></span>
+                    Due Date: Tomorrow (8:00 PM)
+                  </span>
+</div>
+<!-- Borrower Details -->
+<div class="flex flex-wrap items-center gap-y-1 gap-x-space-md text-body-sm font-body-sm text-on-surface-variant mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="person">person</span>
+<span>Lent to: <strong class="text-on-surface font-semibold">Alex Thorne</strong></span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary ml-0.5"></span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span>Lent on: Sep 20, 2025</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span>
+<span>Value: $135</span>
+</div>
+</div>
+<!-- Deluxe Alert Bar -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/80 border border-primary/25 flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="token">token</span>
+<p class="text-body-sm font-body-sm text-on-surface">
+<strong class="text-primary font-medium">Deluxe Component Custody:</strong> Iron Clays Deluxe chips (70 count) custody tracked with tamper seals.
+                    </p>
+</div>
+<span class="hidden sm:inline-flex items-center text-label-sm font-label-sm text-tertiary font-semibold gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="shield_lock">shield_lock</span>
+                    Inspected
+                  </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Buttons Strip -->
+<div class="pt-space-sm border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-amber-300/80">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span>Pickup planned at Cambridge Game Lounge</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="px-3.5 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-200 border border-amber-500/40 text-label-md font-label-md transition-all active:scale-95 flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-amber-300" data-icon="notifications_active">notifications_active</span>
+<span>Send Reminder</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary-container/90 text-label-md font-label-md font-semibold transition-all active:scale-95 flex items-center gap-1.5 shadow-[0_0_12px_rgba(139,92,246,0.25)]" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="task_alt">task_alt</span>
+<span>Inspect &amp; Return</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- ================= RIGHT COLUMN: BORROWED GAMES & RADAR AUDIT (4 Cols) ================= -->
+<aside class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- ================= SECTION: POSSESSION NOTICE (GAMES I BORROW) ================= -->
+<div class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] corona-glow transition-all duration-200 flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="handshake">handshake</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Possession Notice</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-secondary-container/40 text-secondary">In My Custody</span>
+</div>
+<!-- Borrowed Game Info: Heat Pedal to the Metal -->
+<div class="flex gap-space-sm items-start">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0 border border-white/10">
+<img alt="Heat: Pedal to the Metal cover art" class="w-full h-full object-cover" data-alt="Action packed retro formula 1 racing board game artwork Heat Pedal to the Metal with vintage grand prix racecars burning rubber through misty hairpins in nocturnal purple lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwnTpRMaixsLjBdU3DThsXFW6oBjMqu1_sNkKJJUSNaceaj_qmqtzHtZhGMZQ0zeUbjrYf806kfXzUNFlM2k8iMDqs8yAf3fCWe9WgYkvZUph0j6dLY1XgLRMFfhZVydAItrnXc8NBXKJnI7CEhDbRJ_fODx_cIP-4ggY32Prgz9ouTwQlPSk6wPLJtQKahhVP3rwiqDvF04CwdDwhUEhwxbJwI2QZ-fgjL1l_mxs"/>
+</div>
+<div class="flex-1">
+<h4 class="text-title-md font-title-md text-on-surface font-bold leading-tight">Heat: Pedal to the Metal</h4>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Borrowed from <strong class="text-on-surface">Alex Thorne</strong></p>
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-amber-300 mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="event">event</span>
+<span>Return due: <strong>Monday evening</strong> (4 days)</span>
+</div>
+</div>
+</div>
+<!-- Condition Pledge Badge -->
+<div class="p- space-sm p-3 rounded-lg bg-surface-container-lowest/90 border border-outline-variant/30 flex items-center gap-2.5">
+<span class="material-symbols-outlined text-tertiary text-[22px]" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface font-semibold">Borrower Care Pledge Active</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-[12px] leading-tight">"Smoke-free, food-safe table guaranteed during home playthrough."</p>
+</div>
+</div>
+<!-- Return Handoff Action -->
+<button class="w-full py-2.5 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest border border-primary/40 hover:border-primary text-primary font-semibold text-label-md font-label-md transition-all active:scale-95 flex items-center justify-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="forward_to_inbox">forward_to_inbox</span>
+<span>Notify Alex I am Returning This</span>
+</button>
+</div>
+<!-- ================= SECTION: COMPONENT CONDITION INSPECTION GUIDE ================= -->
+<div class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] flex flex-col gap-space-sm">
+<div class="flex items-center gap-2 pb-space-xs border-b border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="checklist">checklist</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold">Component Condition Guide</h3>
+</div>
+<p class="text-body-sm font-body-sm text-outline">Standard handover protocol before re-shelving loaned titles:</p>
+<ul class="space-y-2 mt-1">
+<li class="p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/20 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5" data-icon="check_box" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<div>
+<span class="text-label-md font-label-md text-on-surface">Box Corner Wear Check</span>
+<p class="text-body-sm font-body-sm text-outline text-[12px]">Verify no corner seam splits or shelf rash exceeding Level 1.</p>
+</div>
+</li>
+<li class="p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/20 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5" data-icon="check_box" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<div>
+<span class="text-label-md font-label-md text-on-surface">Card Sleeve Integrity</span>
+<p class="text-body-sm font-body-sm text-outline text-[12px]">Inspect for split seams or clouding on standard 63x88mm cards.</p>
+</div>
+</li>
+<li class="p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/20 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5" data-icon="check_box" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<div>
+<span class="text-label-md font-label-md text-on-surface">Token Tray Count &amp; Dice</span>
+<p class="text-body-sm font-body-sm text-outline text-[12px]">Match exact chit counts against the rulebook inventory register.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- ================= SECTION: RECENT CUSTODY ACTIVITY LOG ================= -->
+<div class="p-space-lg rounded-xl bg-[#181824]/65 backdrop-blur-md border border-white/[0.07] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]" data-icon="radar">radar</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold">Recent Custody Activity</h3>
+</div>
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+</div>
+<div class="divide-y divide-outline-variant/15 text-body-sm font-body-sm">
+<!-- Activity 1 -->
+<div class="py-2.5 flex items-start gap-2.5">
+<div class="w-7 h-7 rounded-full bg-tertiary/15 text-tertiary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="thumb_up">thumb_up</span>
+</div>
+<div class="flex-1">
+<p class="text-on-surface text-[13px] leading-snug">
+<strong class="font-semibold text-primary">Marcus Vance</strong> returned <span class="text-on-surface font-medium">Terraforming Mars</span> with 5-star condition praise.
+                </p>
+<span class="text-[11px] text-outline">Yesterday at 9:14 PM • Trust +0.2%</span>
+</div>
+</div>
+<!-- Activity 2 -->
+<div class="py-2.5 flex items-start gap-2.5">
+<div class="w-7 h-7 rounded-full bg-primary/15 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="verified_user">verified_user</span>
+</div>
+<div class="flex-1">
+<p class="text-on-surface text-[13px] leading-snug">
+                  Loan agreement activated: <strong class="font-semibold text-on-surface">Root: Underworld</strong> handover photo verified.
+                </p>
+<span class="text-[11px] text-outline">Oct 14, 2:30 PM • 32 meeples logged</span>
+</div>
+</div>
+<!-- Activity 3 -->
+<div class="py-2.5 flex items-start gap-2.5">
+<div class="w-7 h-7 rounded-full bg-secondary-container/40 text-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="sync">sync</span>
+</div>
+<div class="flex-1">
+<p class="text-on-surface text-[13px] leading-snug">
+                  BGG Sync: 48 titles marked as available for trusted circle borrowing.
+                </p>
+<span class="text-[11px] text-outline">Oct 10, 11:00 AM • Automated Sync</span>
+</div>
+</div>
+</div>
+<a class="inline-flex items-center justify-center gap-1 pt-2 text-label-sm font-label-sm text-primary hover:text-primary-fixed transition-colors" href="#">
+<span>View Full Audit Ledger</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</aside>
+</div>
+</main>
+<!-- ================= FOOTER ================= -->
+<!-- Conforms verbatim to Footer shared component specifications -->
+<footer class="docked full-width bottom bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 flat no shadows mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin py-space-lg max-w-[1440px] mx-auto gap-space-md">
+<!-- Left: Brand & Nocturnal Statement -->
+<div class="flex flex-col md:flex-row items-center gap-space-md text-center md:text-left">
+<span class="text-headline-sm font-headline-sm text-on-surface dark:text-on-surface font-bold tracking-tight">BoardNight</span>
+<span class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm">
+          © 2025 BoardNight. Crafted for nocturnal tabletop strategists.
+        </span>
+</div>
+<!-- Right: Links Cluster -->
+<div class="flex flex-wrap justify-center md:justify-end items-center gap-space-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Rules &amp; Guides</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Host Handbook</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">API &amp; BGG Sync</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="forum">forum</span>
+<span>Discord Server</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

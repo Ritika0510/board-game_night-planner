@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoardNight - Player Profile &amp; Passport</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#bea8ff",
+            "secondary-fixed-dim": "#cebdff",
+            "secondary": "#cebdff",
+            "surface-container": "#1f1f29",
+            "primary-fixed-dim": "#d0bcff",
+            "primary-fixed": "#e9ddff",
+            "outline-variant": "#494454",
+            "surface-container-lowest": "#0d0d17",
+            "on-error": "#690005",
+            "on-primary": "#3c0091",
+            "on-primary-fixed-variant": "#5516be",
+            "on-secondary-fixed": "#21005e",
+            "on-tertiary-fixed": "#002109",
+            "on-surface-variant": "#cbc3d7",
+            "on-secondary-fixed-variant": "#4f319c",
+            "secondary-fixed": "#e8ddff",
+            "tertiary-fixed-dim": "#4ae176",
+            "inverse-surface": "#e4e1ef",
+            "outline": "#958ea0",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-dim": "#12121c",
+            "background": "#12121c",
+            "inverse-primary": "#6d3bd7",
+            "tertiary-fixed": "#6bff8f",
+            "on-primary-fixed": "#23005c",
+            "surface-container-low": "#1b1b25",
+            "surface-bright": "#393843",
+            "primary-container": "#a078ff",
+            "on-surface": "#e4e1ef",
+            "secondary-container": "#4f319c",
+            "surface-tint": "#d0bcff",
+            "surface": "#12121c",
+            "error": "#ffb4ab",
+            "on-tertiary-container": "#003111",
+            "on-tertiary": "#003915",
+            "surface-container-high": "#292934",
+            "primary": "#d0bcff",
+            "tertiary": "#4ae176",
+            "on-background": "#e4e1ef",
+            "on-primary-container": "#340080",
+            "error-container": "#93000a",
+            "surface-variant": "#34343f",
+            "on-secondary": "#381385",
+            "on-error-container": "#ffdad6",
+            "tertiary-container": "#00a74b",
+            "inverse-on-surface": "#302f3a",
+            "surface-container-highest": "#34343f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "stats-num": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "stats-num": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- TOP APP BAR (Shared Component: TopNavBar) -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md docked full-width top-0 sticky z-50 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-margin max-w-[1440px] mx-auto h-16">
+<!-- Brand Logo -->
+<div class="flex items-center gap-space-md">
+<a class="flex items-center gap-space-xs text-headline-md font-headline-md tracking-tight text-primary dark:text-primary font-bold" href="#">
+<span class="inline-block w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_#d0bcff]"></span>
+<span>BoardNight</span>
+</a>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Explore</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">My Collection</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Planner</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Lending Tracker</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors" href="#">Community</a>
+</nav>
+<!-- Trailing Action Cluster & User Profile -->
+<div class="flex items-center gap-space-md">
+<!-- Trailing Icons -->
+<button aria-label="Search" class="p-2 rounded-lg text-on-surface-variant hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 transition-all duration-200 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+<button aria-label="Notifications" class="p-2 rounded-lg text-on-surface-variant hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 transition-all duration-200 relative active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#4ae176]"></span>
+</button>
+<!-- Trailing Primary Action -->
+<button class="hidden lg:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md hover:opacity-95 transition-all duration-150 shadow-[0_0_16px_rgba(139,92,246,0.35)] active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+<span>Host Session</span>
+</button>
+<!-- Profile Avatar with Status / Level Indicator -->
+<div class="relative pl-space-xs">
+<div class="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-primary to-tertiary">
+<img alt="User avatar with status ring" class="w-full h-full object-cover rounded-full bg-surface-container-high" data-alt="A cinematic medium portrait of a charismatic male tabletop board game player named Marcus Vance in a dimly lit, atmospheric lounge. The setting features subtle violet backlighting, deep nocturnal purple hues, soft obsidian textures, and a shelf of deluxe board game boxes in the soft-focus background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6HF-MD6FU55Pp9eIU8sCi4n-OG2UH4WvpfRuDxlDY-DiYpTNMUUdw0t3i5wrRQu5LqABqFOklde56U_t9HGHEoQac91eDE2V6RYKFlFM8Ms9q6fn89N5o_9DaY4I9l2ld7IIFI4P0Cwu5OafhACszx1_e88688Nshu_r1DARR5HL4MYUYbMMzaX0ssNKhoC8le0_3PCcI3vpaFd__BVyOwuImpjm95BtxILPb93I"/>
+</div>
+<span class="absolute -bottom-1 -right-1 px-1 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-[10px] ring-1 ring-primary/40 font-bold">14</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="w-full max-w-[1440px] mx-auto px-margin py-space-xl">
+<!-- PASSPORT HERO / BANNER -->
+<section class="relative rounded-xl overflow-hidden bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-md mb-space-xl p-space-lg lg:p-space-xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.75)]">
+<!-- Ambient Lighting Blobs -->
+<div class="absolute -top-24 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 right-0 w-80 h-80 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-xl">
+<!-- Identity & Status Block -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-lg">
+<!-- Big Avatar with Holographic Frame -->
+<div class="relative group">
+<div class="w-28 h-28 lg:w-32 lg:h-32 rounded-xl p-[2px] bg-gradient-to-b from-primary via-primary-container to-surface-variant shadow-[0_0_24px_rgba(139,92,246,0.3)]">
+<img class="w-full h-full object-cover rounded-lg bg-surface-container" data-alt="A detailed, atmospheric portrait of Marcus Vance, a 30-something board game strategist with sleek glasses, sitting at a bespoke dark oak gaming table. The mood is modern, nocturnal, and high-tech with moody violet ambient light, obsidian shadows, and pristine game components scattered tastefully in the backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfSVF_hxK1vOivFp2-WzmHUwT6kapwO__L3QDQAsRvLWKlbXNBEzj8-deVFr9-JM8YXCT2eNv61F5xe5KotEZgHlmw2b8c4lJYdDdX-9xvsk_dDhkxuY2rWD0tUBH-qCRlTylOR2KDw0hXBRJhxnpzEksGpLGn5ha7YxkaAZbZ9PaFUJuZWoU5s__tYXDtzoeq2lMFKVITM1aywcdI-2SVAoKeqOWsEsiDzWMvCZ4"/>
+</div>
+<div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-lg bg-surface-container-highest/90 border border-primary/40 text-primary flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="shield">shield</span>
+<span class="font-label-sm">LVL 14</span>
+</div>
+</div>
+<!-- User Details -->
+<div class="space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Marcus Vance</h1>
+<span class="text-body-md font-body-md text-on-surface-variant">@MarcusTactics</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-container/30 text-tertiary border border-tertiary/40">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_6px_#4ae176]"></span>
+                99.8% Tier 1 Keeper
+              </span>
+</div>
+<p class="text-primary-fixed-dim text-title-md font-title-md font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="stars">stars</span>
+              Grand Strategist &amp; Guild Host
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl pt-1">
+              Nocturnal heavy Euro strategist and Twilight Imperium veteran. Sleeves every card, prints custom 3D inserts, and makes gourmet pork buns for game night.
+            </p>
+<!-- Level / XP Progression Meter -->
+<div class="pt-2 max-w-md">
+<div class="flex justify-between items-center text-label-sm font-label-sm mb-1">
+<span class="text-on-surface-variant">Tactician Rank 14</span>
+<span class="text-primary font-stats-num text-[12px]">8,420 / 10,000 XP to Arch-Chancellor</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden p-0.5 border border-outline-variant/30">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width: 84.2%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons & Synced Status -->
+<div class="flex flex-col sm:flex-row lg:flex-col gap-space-sm w-full lg:w-auto items-stretch lg:items-end">
+<div class="flex gap-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high/60 border border-outline-variant/40 hover:border-primary/50 text-on-surface font-label-md hover:bg-surface-container-high transition-all flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+<span>Edit Passport</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high/60 border border-outline-variant/40 hover:border-primary/50 text-on-surface font-label-md hover:bg-surface-container-high transition-all flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="share">share</span>
+<span>Share Card</span>
+</button>
+</div>
+<!-- BGG Sync Pill -->
+<div class="px-space-md py-2 rounded-lg bg-surface-container-lowest/80 border border-outline-variant/30 flex items-center justify-between lg:justify-end gap-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="sync">sync</span>
+<div class="text-left">
+<div class="text-label-sm font-label-sm text-on-surface">BGG Profile Synced</div>
+<div class="text-[10px] text-on-surface-variant">12m ago • ID #194882</div>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-primary hover:underline">Re-sync</button>
+</div>
+</div>
+</div>
+<!-- Quick Metrics Counter Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mt-space-lg pt-space-lg border-t border-outline-variant/20">
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20">
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="shelves">shelves</span>
+            Vault Collection
+          </div>
+<div class="text-stats-num font-stats-num text-on-surface mt-1">142 <span class="text-title-md font-normal text-on-surface-variant">Games</span></div>
+<div class="text-label-sm font-label-sm text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+            100% catalogued
+          </div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20">
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="event_available">event_available</span>
+            Nights Hosted
+          </div>
+<div class="text-stats-num font-stats-num text-on-surface mt-1">48 <span class="text-title-md font-normal text-on-surface-variant">Sessions</span></div>
+<div class="text-label-sm font-label-sm text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="verified">verified</span>
+            100% completion rate
+          </div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20">
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="military_tech">military_tech</span>
+            Win Ratio
+          </div>
+<div class="text-stats-num font-stats-num text-on-surface mt-1">68% <span class="text-title-md font-normal text-on-surface-variant">Victories</span></div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+            24 matches logged in 2025
+          </div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20">
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary-fixed" data-icon="lock_open">lock_open</span>
+            Clean Custody
+          </div>
+<div class="text-stats-num font-stats-num text-secondary-fixed mt-1">58 <span class="text-title-md font-normal text-on-surface-variant">Loans</span></div>
+<div class="text-label-sm font-label-sm text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="shield_with_heart">shield_with_heart</span>
+            0 missing pieces reported
+          </div>
+</div>
+</div>
+</section>
+<!-- TWO-COLUMN LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN (Main Focus ~65% -> 8 cols) -->
+<div class="lg:col-span-8 space-y-space-xl">
+<!-- SECTION 1: TOP SHELF SHOWCASE -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="p-1.5 rounded-lg bg-secondary-container/40 text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Top Shelf Showcase</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">The Holy Grail quartet on Marcus's physical pedestal</p>
+</div>
+</div>
+<a class="text-label-md font-label-md text-primary hover:underline flex items-center gap-1" href="#">
+<span>View full vault</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Shelf Cards Grid (2x2) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Game 1: Twilight Imperium 4th Ed -->
+<div class="group relative rounded-xl bg-surface-container-low/60 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 p-space-md overflow-hidden hover:-translate-y-1 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+<div class="flex gap-space-md">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest border border-outline-variant/40 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Deluxe Twilight Imperium Fourth Edition tabletop board game box cover artwork shown under atmospheric indigo and violet LED lights with sharp cosmic galactic illustrations, sleek modern dark aesthetics, and intricate sci-fi elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSEf7djez6nBRO_PJykpppkrWVYXspEOmfSOi9R9AGT9Wpat56BWJdYmTf-rurYURqUrJ4k-hoFrRIPvw_IIYkG6eUunol32jCTiuHDdzKQEbnO6-b-RZpGuuz4fnFY-qska8AOaqxpJ_HNZblyUgbwPg534uqI3IVYcX0R-lhP7TJy3O4noDd18beY-kgh30g-TPdxtx7KRBoweE8zmxlDFxg4hGlfib3NGjR27g"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-surface-container-lowest/90 text-primary font-stats-num text-[10px]">10/10</span>
+</div>
+<div class="flex-1 space-y-1">
+<span class="inline-block px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Favorite All-Time</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold group-hover:text-primary transition-colors">Twilight Imperium (4th Ed)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">"The definitive grand opera of board gaming."</p>
+<div class="flex items-center gap-space-md pt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="play_circle">play_circle</span>
+                      14 plays
+                    </span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" data-icon="emoji_events">emoji_events</span>
+                      71% win
+                    </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Game 2: Brass: Birmingham -->
+<div class="group relative rounded-xl bg-surface-container-low/60 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 p-space-md overflow-hidden hover:-translate-y-1 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+<div class="flex gap-space-md">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest border border-outline-variant/40 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Brass Birmingham Deluxe edition tabletop box art with industrial revolution canals, cotton mills, and coal mines in Victorian England, depicted in dark moody tones with copper and warm amber lighting against a deep charcoal background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFuDMAa5Oy9URrzPOVcW7XRzRwNtyn2b-3K2LxFK2ynXDrLTclZWzM3DSn35vm4G7PgvzoxKevO0mJTyHMfUQiuRDirUMSJpU3X7Cu--RQRNXKMCOSDa3i8d_Oc19JwIKi4GfEHqBqVGvnuuSMtpwXXB79WIWVZrWqdiFkdT8vXWtc0-BE_UR576nd2cyek43nIzKMymbAU_ds_O_1NLHIFahMM9BTJWHIsgwA1b0"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-surface-container-lowest/90 text-primary font-stats-num text-[10px]">10/10</span>
+</div>
+<div class="flex-1 space-y-1">
+<span class="inline-block px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Economic Masterpiece</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold group-hover:text-primary transition-colors">Brass: Birmingham (Deluxe)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">"Pure canal &amp; rail strategy with iron clay poker chips."</p>
+<div class="flex items-center gap-space-md pt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="play_circle">play_circle</span>
+                      28 plays
+                    </span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" data-icon="emoji_events">emoji_events</span>
+                      64% win
+                    </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Game 3: Dune: Imperium - Uprising -->
+<div class="group relative rounded-xl bg-surface-container-low/60 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 p-space-md overflow-hidden hover:-translate-y-1 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+<div class="flex gap-space-md">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest border border-outline-variant/40 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Dune Imperium Uprising board game box cover featuring dramatic desert dunes of Arrakis, sandworms, and high-contrast tactical sci-fi battle intrigue under intense planetary lighting with deep obsidian and golden sands." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCStiC1d5HjJPuyRPaomOqWf7_QJdbw3qd6ayeoprDwofcMqJ67HvfX9t_CN1o5aWow4x7uwLMRKj-B6ukHkGyGQDuXX6QJUTI2M4J7nGxt-bFK7Weyw-OJ0Sf2U81odXDIfYSjFi0oowu4H8KZMJ0sr6i77kz2sgyaWC3LNCKfKC0vtB6psb8go6OGg8KhaJC8QB2KMGmpFHeLTVqEmilkOeuM7joRrIOMF7pkgs8"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-surface-container-lowest/90 text-primary font-stats-num text-[10px]">10/10</span>
+</div>
+<div class="flex-1 space-y-1">
+<span class="inline-block px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Tournament Pick</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold group-hover:text-primary transition-colors">Dune: Imperium (Uprising)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">"Worker placement with lethal bluffing and spy rings."</p>
+<div class="flex items-center gap-space-md pt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="play_circle">play_circle</span>
+                      32 plays
+                    </span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" data-icon="emoji_events">emoji_events</span>
+                      75% win
+                    </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Game 4: Ark Nova -->
+<div class="group relative rounded-xl bg-surface-container-low/60 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 p-space-md overflow-hidden hover:-translate-y-1 shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+<div class="flex gap-space-md">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest border border-outline-variant/40 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Ark Nova modern zoo management board game cover box art with lush botanical pavilions, wildlife conservation icons, and sleek tactical gaming design rendered in rich nocturnal contrast with green and violet accent hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35U0oXZ5yCzhapMDitg_ZvkSij8M1ivnVBuQQeZ3sYMQKKln51ltCUM_2fHLb-GHIHzB6H_oS-gntS4sykW3w-Q55l_cM2EIySZId_rr63j0DjCcawtysgX0JFY_vOP57bGEWJJ2J3qrEvnqYGQkKTuDSlRRDj7-1mPU4j2kmxwW7SahGP5lKMEE4U0YO-V6d4gNuijmQiKt9_iRH0h04tMPHSl_vW9RjyAyZDQY"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-surface-container-lowest/90 text-primary font-stats-num text-[10px]">10/10</span>
+</div>
+<div class="flex-1 space-y-1">
+<span class="inline-block px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">Engine Builder of Choice</span>
+<h3 class="text-title-md font-title-md text-on-surface font-bold group-hover:text-primary transition-colors">Ark Nova</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">"Unmatched card synergy and conservation card play."</p>
+<div class="flex items-center gap-space-md pt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="play_circle">play_circle</span>
+                      19 plays
+                    </span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" data-icon="emoji_events">emoji_events</span>
+                      63% win
+                    </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: PLAY DNA & MECHANICS RADAR -->
+<section class="rounded-xl bg-surface-container-low/70 border border-outline-variant/30 p-space-lg backdrop-blur-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="p-1.5 rounded-lg bg-secondary-container/40 text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="psychology">psychology</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Tabletop Play DNA &amp; Preferences</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Derived from 180+ verified logged tabletop sessions</p>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-surface-container-high/60 border border-outline-variant/40">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="weight">fitness_center</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Avg Game Weight:</span>
+<span class="text-label-md font-label-md text-primary font-bold">3.8 / 5.0 (Heavy Strategy)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg items-center">
+<!-- Mechanics Affinity Bars -->
+<div class="space-y-space-md">
+<div class="text-label-md font-label-md text-on-surface font-semibold mb-2">Preferred Mechanics Spectrum</div>
+<!-- Bar 1 -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">Worker Placement</span>
+<span class="text-primary font-bold">92%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">Area Control &amp; Board Presence</span>
+<span class="text-primary font-bold">88%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">Engine &amp; Synergy Building</span>
+<span class="text-primary font-bold">84%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">Heavy Economic &amp; Logistics</span>
+<span class="text-primary font-bold">79%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 79%;"></div>
+</div>
+</div>
+<!-- Bar 5 -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">Social Deduction / Party</span>
+<span class="text-on-surface-variant font-bold">35%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline rounded-full" style="width: 35%;"></div>
+</div>
+</div>
+</div>
+<!-- Player Count Distribution & Session Sweet Spot -->
+<div class="p-space-md rounded-xl bg-surface-container/50 border border-outline-variant/30 space-y-space-md">
+<div class="text-label-md font-label-md text-on-surface font-semibold">Table Player Count Preference</div>
+<div class="space-y-space-sm">
+<!-- 4 Players -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/40 border border-primary/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="groups">groups</span>
+<span class="text-body-md font-body-md text-on-surface">4 Players (Optimal Euro)</span>
+</div>
+<span class="text-label-md font-label-md text-primary font-bold">52% of plays</span>
+</div>
+<!-- 6 Players -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="diversity_3">diversity_3</span>
+<span class="text-body-md font-body-md text-on-surface">6 Players (Epic War / TI4)</span>
+</div>
+<span class="text-label-md font-label-md text-secondary font-bold">30% of plays</span>
+</div>
+<!-- 2 Players -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="person">person</span>
+<span class="text-body-md font-body-md text-on-surface">2 Players (Duel / Skirmish)</span>
+</div>
+<span class="text-label-md font-label-md text-outline font-bold">18% of plays</span>
+</div>
+</div>
+<!-- Quick Badges -->
+<div class="pt-2 flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline-variant/30">Zero Kingmaking Tolerated</span>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline-variant/30">Loves Asymmetric Powers</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: RECENT MATCH CHRONICLES -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="p-1.5 rounded-lg bg-secondary-container/40 text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="history_edu">history_edu</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Recent Match Chronicles</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Live verified logs from Friday Night Tabletop sessions</p>
+</div>
+</div>
+<button class="text-label-md font-label-md text-primary hover:underline flex items-center gap-1">
+<span>Log new play</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+</div>
+<!-- Chronological List -->
+<div class="space-y-space-sm">
+<!-- Match 1 -->
+<div class="rounded-xl bg-surface-container-low/60 border border-outline-variant/30 p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]" data-icon="military_tech">military_tech</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface font-bold">Dune: Imperium (Uprising)</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-container/30 text-tertiary border border-tertiary/40">VICTORY (11 VP)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                    Faction: <span class="text-on-surface">Fremen Alliance</span> • 4 Players • 118 min
+                  </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic mt-1">
+                    "Clutched endgame with double spice harvest and a covert combat coup against House Harkonnen."
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between w-full md:w-auto text-label-sm font-label-sm text-on-surface-variant gap-1">
+<span>Yesterday at 11:42 PM</span>
+<span class="text-primary font-semibold">Opponents: Alex T, Sarah K, Liam D</span>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="rounded-xl bg-surface-container-low/60 border border-outline-variant/30 p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]" data-icon="trophy">trophy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface font-bold">Ark Nova</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-container/30 text-tertiary border border-tertiary/40">VICTORY (114 VP)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                    Map: <span class="text-on-surface">Map 3 (Silver Lake)</span> • 3 Players • 140 min
+                  </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic mt-1">
+                    "Heavy reptile conservation engine with 5 sponsor synergies in row 1."
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between w-full md:w-auto text-label-sm font-label-sm text-on-surface-variant gap-1">
+<span>Feb 28, 2025</span>
+<span class="text-primary font-semibold">Opponents: Chloe M, Dev R</span>
+</div>
+</div>
+<!-- Match 3 -->
+<div class="rounded-xl bg-surface-container-low/60 border border-outline-variant/30 p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[24px]" data-icon="vital_signs">vital_signs</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface font-bold">Nemesis</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30">SURVIVED / ESCAPED</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                    Character: <span class="text-on-surface">The Captain</span> • 5 Players • 185 min
+                  </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic mt-1">
+                    "Repaired Engine 2 while Queen stalked Hibernatorium, ejected via Pod 1 solo."
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between w-full md:w-auto text-label-sm font-label-sm text-on-surface-variant gap-1">
+<span>Feb 21, 2025</span>
+<span class="text-primary font-semibold">Opponents: NYC Syndicate Crew</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN (Sidebar ~35% -> 4 cols) -->
+<div class="lg:col-span-4 space-y-space-xl">
+<!-- SIDEBAR 1: GUILD BADGES & ACHIEVEMENTS -->
+<section class="rounded-xl bg-surface-container-low/70 border border-outline-variant/30 p-space-lg backdrop-blur-md space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="military_tech">military_tech</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Guild Badges</h2>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">14 / 20 Unlocked</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Badge 1: Legendary Gold -->
+<div class="p-space-sm rounded-lg bg-surface-container/60 border border-outline-variant/30 hover:border-primary/40 transition-colors flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-highest text-[#F59E0B] shrink-0 shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="shield">shield</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-on-surface font-bold">The Custodian</span>
+<span class="px-1.5 py-0.2 rounded text-[10px] bg-[#F59E0B]/20 text-[#F59E0B] font-bold border border-[#F59E0B]/30">LEGENDARY</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">50+ games loaned &amp; returned in pristine mint condition.</p>
+</div>
+</div>
+<!-- Badge 2: Epic Violet -->
+<div class="p-space-sm rounded-lg bg-surface-container/60 border border-outline-variant/30 hover:border-primary/40 transition-colors flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-highest text-primary shrink-0 shadow-[0_0_12px_rgba(139,92,246,0.3)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-on-surface font-bold">Iron Clad Sleeper</span>
+<span class="px-1.5 py-0.2 rounded text-[10px] bg-primary/20 text-primary font-bold border border-primary/30">EPIC</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">100+ collection games completely protected in premium sleeves.</p>
+</div>
+</div>
+<!-- Badge 3: Mythic Amber -->
+<div class="p-space-sm rounded-lg bg-surface-container/60 border border-outline-variant/30 hover:border-primary/40 transition-colors flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-highest text-[#F97316] shrink-0 shadow-[0_0_12px_rgba(249,115,22,0.25)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-on-surface font-bold">Galaxy Emperor</span>
+<span class="px-1.5 py-0.2 rounded text-[10px] bg-[#F97316]/20 text-[#F97316] font-bold border border-[#F97316]/30">MYTHIC</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Claimed victory in a 6-player Twilight Imperium match in under 8 hours.</p>
+</div>
+</div>
+<!-- Badge 4: Rare Emerald -->
+<div class="p-space-sm rounded-lg bg-surface-container/60 border border-outline-variant/30 hover:border-primary/40 transition-colors flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-highest text-tertiary shrink-0 shadow-[0_0_12px_rgba(74,225,118,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_cafe">local_cafe</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-on-surface font-bold">Midnight Barista</span>
+<span class="px-1.5 py-0.2 rounded text-[10px] bg-tertiary/20 text-tertiary font-bold border border-tertiary/30">RARE</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Provided artisan gourmet snacks or craft pour-overs to 20+ sessions.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SIDEBAR 2: HOST REPUTATION & ENDORSEMENTS -->
+<section class="rounded-xl bg-surface-container-low/70 border border-outline-variant/30 p-space-lg backdrop-blur-md space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="forum">forum</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Host Endorsements</h2>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary font-semibold">100% Positive</span>
+</div>
+<div class="space-y-space-md">
+<!-- Endorsement 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-primary text-[12px] font-bold">
+                    SK
+                  </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">Sarah K.</div>
+<div class="text-[10px] text-on-surface-variant">Played 14 sessions together</div>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">
+                "Best host in Brooklyn. Heavy rules explained in 10 mins flat with visual aids, and insane handmade pork buns on table breaks!"
+              </p>
+</div>
+<!-- Endorsement 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container/40 border border-outline-variant/20 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-secondary text-[12px] font-bold">
+                    AT
+                  </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">Alex T.</div>
+<div class="text-[10px] text-on-surface-variant">Lending partner (8 loans)</div>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">
+                "Borrowing from Marcus is safer than a Swiss bank. Everything is sleeved, labeled, and accompanied by quick-start reference cards."
+              </p>
+</div>
+</div>
+</section>
+<!-- SIDEBAR 3: CONNECTED GUILDS & CIRCLES -->
+<section class="rounded-xl bg-surface-container-low/70 border border-outline-variant/30 p-space-lg backdrop-blur-md space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="hub">hub</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Connected Guilds</h2>
+</div>
+<a class="text-label-sm font-label-sm text-primary hover:underline" href="#">Find circles</a>
+</div>
+<div class="space-y-space-sm">
+<!-- Guild 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container/50 border border-outline-variant/30 flex items-center justify-between hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 border border-primary/30 flex items-center justify-center text-primary font-bold text-[12px]">
+                  NYC
+                </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">NYC Heavy Euro Syndicate</div>
+<div class="text-[11px] text-on-surface-variant">Co-Founder • 18 verified tacticians</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Guild 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container/50 border border-outline-variant/30 flex items-center justify-between hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary-container/30 border border-secondary/30 flex items-center justify-center text-secondary font-bold text-[12px]">
+                  TI
+                </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">Brooklyn TI4 Council</div>
+<div class="text-[11px] text-on-surface-variant">Commander • 12 active players</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Guild 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container/50 border border-outline-variant/30 flex items-center justify-between hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-variant border border-outline-variant/30 flex items-center justify-center text-on-surface-variant font-bold text-[12px]">
+                  BGG
+                </div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">BGG Guild #4820</div>
+<div class="text-[11px] text-on-surface-variant">Active Contributor • East Coast Group</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- FOOTER (Shared Component: Footer) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest docked full-width bottom flat no shadows mt-space-xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin py-space-lg max-w-[1440px] mx-auto gap-space-md">
+<!-- Left: Logo & Copyright -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md text-center sm:text-left">
+<span class="text-headline-sm font-headline-sm text-on-surface dark:text-on-surface font-bold tracking-tight">BoardNight</span>
+<span class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm">
+          © 2025 BoardNight. Crafted for nocturnal tabletop strategists.
+        </span>
+</div>
+<!-- Right: Footer Links -->
+<div class="flex flex-wrap items-center justify-center gap-space-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 transition-opacity duration-150 hover:opacity-80" href="#">Rules &amp; Guides</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 transition-opacity duration-150 hover:opacity-80" href="#">Host Handbook</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 transition-opacity duration-150 hover:opacity-80" href="#">API &amp; BGG Sync</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 transition-opacity duration-150 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200 transition-opacity duration-150 hover:opacity-80" href="#">Discord Server</a>
+</div>
+</div>
+</footer>
+</body></html>

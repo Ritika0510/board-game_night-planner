@@ -1,0 +1,61 @@
+BOARDNIGHT — FINAL LOCAL SETUP & COMMUNITY TEST
+
+IMPORTANT
+This project uses your local MySQL server. The ZIP can be inspected here, but it cannot connect to the MySQL service running on your Windows PC. Keep your DB password private; enter it only in backend/.env on your computer.
+
+1) DATABASE
+- Start MySQL Server.
+- Open MySQL Workbench.
+- Open database/schema.sql and execute it (lightning icon).
+- Confirm the schema contains these tables:
+  communities, community_members, community_messages
+- Confirm community_messages columns are: id, community_id, user_id, message, sent_at.
+
+2) BACKEND CONFIG
+- Open backend/.env.example.
+- Copy it and name the copy .env in the same backend folder.
+- In backend/.env, set DB_HOST=localhost, DB_PORT=3306, DB_USER to your MySQL username, DB_PASSWORD to your local MySQL password, DB_NAME=boardnight.
+- Do not upload/share .env or commit it to GitHub.
+
+3) START BACKEND
+- Open PowerShell in the project folder.
+- Run: cd backend
+- Run: npm install
+- Run: npm start
+- Keep this terminal open. Backend should print http://localhost:5000.
+
+4) CHECK BACKEND + DATABASE
+- Open http://localhost:5000/api/health (should return success true).
+- Open http://localhost:5000/api/db-test (should say MySQL connected).
+- If db-test fails, check MySQL is running and the DB credentials in backend/.env.
+
+5) START FRONTEND (SECOND TERMINAL)
+- Open another PowerShell in the project folder.
+- Run: cd frontend
+- Run: npm install
+- Run: npm run dev
+- Open the Local URL printed by Vite, usually http://localhost:5173.
+
+6) COMMUNITY MULTI-ACCOUNT TEST
+- Login as Account A and create a community. Send a chat message.
+- In MySQL Workbench run:
+  USE boardnight;
+  SELECT * FROM communities ORDER BY id DESC;
+  SELECT * FROM community_members ORDER BY id DESC;
+  SELECT * FROM community_messages ORDER BY id DESC;
+- Open an Incognito window at the same frontend URL and sign in as Account B.
+- Open Communities. Account B should see Account A's community as DISCOVER, then click Join community.
+- Account B should then see the chat and be able to send a message.
+- Refresh Account A's page and verify Account B's message appears.
+
+TROUBLESHOOTING
+- If Communities shows an error, check backend terminal first; then check /api/db-test.
+- If MySQL reports unknown column/table, compare the live table structure with database/schema.sql. Do not drop existing tables or delete user data.
+- Keep both backend and frontend terminals running while testing.
+
+VERIFICATION STATUS OF THIS PACKAGE
+- backend/server.js passes Node's syntax check.
+- Community list/create/join/leave/delete and chat API routes are present in backend/server.js.
+- Frontend calls those APIs from the Communities page.
+- A live MySQL integration test cannot be performed from this packaged environment because it cannot access the MySQL server running on your Windows PC or its local credentials.
+- Frontend production build could not be verified in this environment because dependency installation did not complete. Run npm install in frontend on your PC, then npm run build to verify.

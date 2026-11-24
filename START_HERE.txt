@@ -1,0 +1,30 @@
+BOARDNIGHT - PROJECT PACKAGE
+
+Folders:
+- frontend/       React + Vite application
+- backend/        Express API
+- database/       MySQL schema
+- docs/           project design/reference documents
+
+START FRONTEND
+1. Open PowerShell in this project folder.
+2. Run: cd frontend
+3. Run: npm install
+4. Run: npm run dev
+5. Open the Local URL printed by Vite (usually http://localhost:5173).
+
+START BACKEND (second terminal)
+1. Open a second PowerShell window in this project folder.
+2. Run: cd backend
+3. Create .env by copying .env.example to .env.
+4. Fill in your local MySQL credentials and DB_NAME=boardnight.
+5. Run: npm install
+6. Run: npm start (if no start script exists, run: node server.js).
+
+DATABASE
+- Start your local MySQL Server.
+- Open database/schema.sql in MySQL Workbench and execute it.
+- Confirm backend/.env uses the same database name and credentials.
+
+IMPORTANT STATUS NOTE
+This package includes the latest dashboard styling package and the latest Workspace implementation carried forward from the community-chat update. Some features in the current project are browser-localStorage based rather than shared across multiple users/devices. Do not present those as real-time multi-user database features unless you implement and test the corresponding APIs/tables.

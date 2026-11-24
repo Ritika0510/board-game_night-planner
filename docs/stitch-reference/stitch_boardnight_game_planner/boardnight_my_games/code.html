@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoardNight — My Vault & Collection</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#0d0d17",
+            "primary-fixed-dim": "#d0bcff",
+            "on-background": "#e4e1ef",
+            "outline": "#958ea0",
+            "primary-container": "#a078ff",
+            "tertiary-fixed": "#6bff8f",
+            "secondary-fixed-dim": "#cebdff",
+            "on-secondary": "#381385",
+            "tertiary-fixed-dim": "#4ae176",
+            "secondary-container": "#4f319c",
+            "on-tertiary": "#003915",
+            "on-surface-variant": "#cbc3d7",
+            "on-secondary-container": "#bea8ff",
+            "primary-fixed": "#e9ddff",
+            "inverse-on-surface": "#302f3a",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-container-high": "#292934",
+            "tertiary-container": "#00a74b",
+            "error-container": "#93000a",
+            "surface-container": "#1f1f29",
+            "on-secondary-fixed": "#21005e",
+            "on-error": "#690005",
+            "surface-bright": "#393843",
+            "secondary": "#cebdff",
+            "on-tertiary-fixed": "#002109",
+            "secondary-fixed": "#e8ddff",
+            "surface-container-low": "#1b1b25",
+            "surface-tint": "#d0bcff",
+            "on-surface": "#e4e1ef",
+            "inverse-primary": "#6d3bd7",
+            "surface-dim": "#12121c",
+            "primary": "#d0bcff",
+            "tertiary": "#4ae176",
+            "on-primary-fixed": "#23005c",
+            "on-secondary-fixed-variant": "#4f319c",
+            "inverse-surface": "#e4e1ef",
+            "error": "#ffb4ab",
+            "on-primary-fixed-variant": "#5516be",
+            "surface-variant": "#34343f",
+            "surface": "#12121c",
+            "on-tertiary-container": "#003111",
+            "outline-variant": "#494454",
+            "on-primary": "#3c0091",
+            "on-error-container": "#ffdad6",
+            "on-primary-container": "#340080",
+            "background": "#12121c",
+            "surface-container-highest": "#34343f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "gutter-mobile": "1rem",
+            "margin-mobile": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "stats-num": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "stats-num": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Nocturnal tactical ambient styling */
+    body {
+      background-color: #09090F;
+      color: #e4e1ef;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(24, 24, 36, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139, 92, 246, 0.45);
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.7), 0 0 20px -2px rgba(139, 92, 246, 0.3);
+    }
+    .glow-active {
+      box-shadow: 0 0 16px rgba(139, 92, 246, 0.35);
+      border-color: rgba(167, 139, 250, 0.6) !important;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0d0d17;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #34343f;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #958ea0;
+    }
+  </style>
+</head>
+<body class="bg-[#09090F] text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Shared Component Execution) -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-margin max-w-[1440px] mx-auto h-16">
+<!-- Brand Logo & Cluster -->
+<div class="flex items-center gap-space-lg">
+<a class="flex items-center gap-space-xs text-headline-md font-headline-md tracking-tight text-primary dark:text-primary font-bold" href="#">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="token" style="font-variation-settings: 'FILL' 1;">token</span>
+<span>BoardNight</span>
+</a>
+<!-- Desktop Navigation Items -->
+<nav class="hidden md:flex items-center gap-space-md ml-space-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 px-3 py-1.5 rounded-lg" href="#">Explore</a>
+<!-- Active Target: My Collection -->
+<a class="text-primary dark:text-primary border-b-2 border-primary font-headline-sm pb-1 px-3 py-1.5" href="#">My Collection</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 px-3 py-1.5 rounded-lg" href="#">Planner</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 px-3 py-1.5 rounded-lg" href="#">Lending Tracker</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-md hover:text-on-surface transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-container-high/50 px-3 py-1.5 rounded-lg" href="#">Community</a>
+</nav>
+</div>
+<!-- Trailing Cluster (Host Session, Search, Notifs, Profile) -->
+<div class="flex items-center gap-space-sm">
+<button class="hidden lg:flex items-center gap-space-xs bg-gradient-to-r from-primary-container to-secondary-container text-on-primary px-space-md py-1.5 rounded-lg font-label-md text-label-md shadow-[0_0_16px_rgba(139,92,246,0.35)] hover:shadow-[0_0_22px_rgba(139,92,246,0.5)] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="add_circle">add_circle</span>
+<span>Host Session</span>
+</button>
+<button aria-label="Quick Search" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high/50 rounded-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="relative">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high/50 rounded-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_#d0bcff]"></span>
+</div>
+<!-- Profile Avatar with Status Ring -->
+<div class="relative ml-space-xs cursor-pointer active:scale-95 transition-transform" title="MarcusTactics - Tactician Tier">
+<img class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/80 ring-offset-2 ring-offset-surface" data-alt="Close up profile portrait of a tabletop strategist in a moody violet-lit gaming lounge holding custom acrylic game dice, hyper realistic digital art, cinematic dark lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0JLGrIaCtI2YX_0XeHaevTgg9EPPaogfzdlZZpd1zXxRgMJzPt9PgVsog1zQOQUGCxJxiaYQFU-DbbdZHy0txiuE6cVJcTzwy_Pd6RqCUxl-wxSDJLADzGbS3HV6jbvtzgYgpbPkf2jEBwn343Sw_rE7V0JPyg_mKjsy3USwJf8IhLGjnUgqmrmCGVwvcsImLz_zgziChRtm_n6YztJkOpQPxDAXHpFhYfSqAtzA"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-tertiary rounded-full ring-2 ring-surface shadow-[0_0_6px_#4ae176]"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Canvas Container -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-margin py-space-lg flex flex-col gap-space-lg">
+<!-- Collection Header Section -->
+<section class="glass-card rounded-xl p-space-lg relative overflow-hidden border border-white/10 bg-gradient-to-br from-surface-container/60 via-surface-container-low/40 to-surface-container-lowest/80">
+<!-- Ambient Glow Behind Header -->
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div>
+<div class="flex items-center gap-space-sm mb-1.5">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">My Vault & Collection</h1>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/15 text-primary border border-primary/30 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              Vault Active
+            </span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl">
+            Manage, catalogue, and track custom expansions, box weight, and card sleeve integrity.
+          </p>
+<!-- Live Summary Chips Row -->
+<div class="flex flex-wrap items-center gap-space-xs mt-space-md">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low border border-white/5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="inventory_2">inventory_2</span>
+<strong class="text-white font-stats-num text-sm">142</strong> Owned
+            </div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low border border-white/5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="bookmark_added">bookmark_added</span>
+<strong class="text-white font-stats-num text-sm">18</strong> Wishlist
+            </div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low border border-white/5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="swap_horiz">swap_horiz</span>
+<strong class="text-white font-stats-num text-sm">6</strong> For Trade
+            </div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low border border-white/5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="extension">extension</span>
+<strong class="text-white font-stats-num text-sm">8</strong> Expansions
+            </div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest/90 border border-primary/20 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span>Synced with BoardGameGeek <strong class="text-primary">(#MarcusTactics)</strong></span>
+</div>
+</div>
+</div>
+<!-- Action Control Group -->
+<div class="flex flex-wrap lg:flex-nowrap items-center gap-space-sm shrink-0">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline-sm text-label-md px-space-lg py-2.5 rounded-lg flex items-center gap-space-xs shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span>+ Add Game</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high/60 border border-white/10 hover:border-primary/40 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-all active:scale-95" title="Force sync latest plays and ratings from BGG">
+<span class="material-symbols-outlined text-base text-primary" data-icon="refresh">refresh</span>
+<span>BGG Re-Sync</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-high/60 border border-white/10 hover:border-primary/40 hover:bg-surface-container-high text-on-surface-variant hover:text-white transition-all active:scale-95" title="Export CSV Data">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+</button>
+<!-- View Mode Toggle -->
+<div class="flex items-center p-1 rounded-lg bg-surface-container-lowest border border-white/10">
+<button class="px-2.5 py-1.5 rounded text-on-surface-variant hover:text-white flex items-center gap-1 text-label-sm font-label-sm hover:bg-surface-container-high transition-colors" title="Shelf View">
+<span class="material-symbols-outlined text-base" data-icon="shelves">shelves</span>
+</button>
+<button class="px-2.5 py-1.5 rounded bg-primary/20 text-primary border border-primary/40 flex items-center gap-1 text-label-sm font-label-sm shadow-[0_0_10px_rgba(139,92,246,0.3)]" title="Grid View">
+<span class="material-symbols-outlined text-base" data-icon="grid_view">grid_view</span>
+</button>
+<button class="px-2.5 py-1.5 rounded text-on-surface-variant hover:text-white flex items-center gap-1 text-label-sm font-label-sm hover:bg-surface-container-high transition-colors" title="Table View">
+<span class="material-symbols-outlined text-base" data-icon="table_rows">table_rows</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Advanced Filter & Search Command Bar -->
+<section class="glass-card rounded-xl p-space-md flex flex-col gap-space-md border border-white/10">
+<!-- Top Search & Sort Row -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-sm">
+<div class="relative w-full md:flex-1">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-lg pointer-events-none" data-icon="search">search</span>
+<input class="w-full pl-10 pr-10 py-2.5 rounded-lg bg-surface-container-lowest border border-white/10 text-on-surface placeholder:text-outline font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-inner" placeholder="Search by title, designer, mechanics, or barcode..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline/60 text-base cursor-pointer hover:text-primary" data-icon="barcode_scanner" title="Scan Barcode">barcode_scanner</span>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto shrink-0 justify-between md:justify-end">
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Sort:</span>
+<select class="bg-surface-container-lowest border border-white/10 text-on-surface font-label-md text-label-md rounded-lg py-2 pl-3 pr-8 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer">
+<option>BGG Rank</option>
+<option>User Rating</option>
+<option>Weight (Complexity)</option>
+<option>Last Played</option>
+<option>Alphabetical (A-Z)</option>
+</select>
+</div>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high/40 hover:bg-surface-container-high text-on-surface-variant hover:text-white border border-white/10 text-label-md font-label-md flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+<span>Reset (0)</span>
+</button>
+</div>
+</div>
+<!-- Category Filter Chips Cluster -->
+<div class="flex flex-col gap-2 pt-2 border-t border-white/5">
+<!-- Filter Line 1: Quick Categories -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 custom-scrollbar text-label-sm font-label-sm">
+<span class="text-outline shrink-0 pr-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="tune">tune</span> Filters:
+          </span>
+<!-- Status Filters -->
+<button class="px-2.5 py-1 rounded-full bg-primary/20 border border-primary/50 text-white shrink-0 shadow-[0_0_8px_rgba(139,92,246,0.2)]">All</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/60 border border-white/10 text-on-surface-variant hover:text-white hover:border-primary/40 shrink-0 transition-colors">Shelf of Shame (Unplayed)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/60 border border-white/10 text-on-surface-variant hover:text-white hover:border-primary/40 shrink-0 transition-colors">100% Sleeved</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/60 border border-white/10 text-on-surface-variant hover:text-white hover:border-primary/40 shrink-0 transition-colors">Lent Out</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/60 border border-white/10 text-on-surface-variant hover:text-white hover:border-primary/40 shrink-0 transition-colors">Favorites ★</button>
+<span class="w-px h-4 bg-white/10 shrink-0 mx-1"></span>
+<!-- Player Count -->
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">Solo (1P)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">2 Players</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">3-4 Players</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">5+ Players</button>
+<span class="w-px h-4 bg-white/10 shrink-0 mx-1"></span>
+<!-- Weight -->
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">Light (< 2.0)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">Medium (2.0 - 3.2)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high/40 border border-white/10 text-on-surface-variant hover:text-white shrink-0">Heavy (> 3.5)</button>
+</div>
+<!-- Filter Line 2: Mechanics & Time -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 custom-scrollbar text-label-sm font-label-sm">
+<span class="text-outline shrink-0 pr-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="category">category</span> Mechanics:
+          </span>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-primary shrink-0 transition-colors">Worker Placement</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-primary shrink-0 transition-colors">Deck Building</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-primary shrink-0 transition-colors">Area Control</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-primary shrink-0 transition-colors">Co-op Strategy</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-primary shrink-0 transition-colors">Euro Game</button>
+<span class="w-px h-4 bg-white/10 shrink-0 mx-1"></span>
+<span class="text-outline shrink-0 text-label-sm font-label-sm">Time:</span>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-white shrink-0">< 45m</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-white shrink-0">60-90m</button>
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10 text-on-surface-variant hover:text-white shrink-0">120m+</button>
+</div>
+</div>
+</section>
+<!-- Main Game Cards Display Grid (Responsive 4-column Bento layout) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-lg">
+<!-- Card 1: Dune Imperium Uprising -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group">
+<div>
+<!-- Artwork Container -->
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Cinematic tabletop board game box cover art Dune Imperium Uprising showing desert spice warriors sand worms and tactical faction shields under a purple violet nocturnal twilight sky high contrast dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbMQk8s9tgIdiq8F8tyW3pgCkD1RzRrEAO4ux1ZLMqaMSiVAsJw-o2LCQ9OnHODwPSRQoDghpsg41yw1nupAyNOX7VBmDFhye6GGFm_T4Wn4AAlscjUVJZVxbhYZ7d4VgqYbvpnoFTEUnDu6jyJPGF3yIvUTlP8GQFPKU6J0TJeDeDcKyJ6I4ifwmL7QRb3WU_kxMfi-6XWiK78J7hdKllOFn9b3yDitIZv37mxws"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<!-- BGG Rank & Weight Badges Overlay -->
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #8
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="fitness_center">fitness_center</span> 3.7
+              </span>
+</div>
+<!-- Shelf Location Badge -->
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Shelf A-2
+              </span>
+</div>
+</div>
+<!-- Card Content Body -->
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Dune: Imperium – Uprising
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Paul Dennen (2023) • Dire Wolf</p>
+</div>
+<!-- Tactical Stats Row -->
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 1–6 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 90–120m
+              </span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span> 8.8
+              </span>
+</div>
+<!-- Physical Upgrades & Sleeving Integrity -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="shield">shield</span> 100% Sleeved (Dragon Shield)
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Custom 3D Minis Inside
+              </span>
+</div>
+</div>
+</div>
+<!-- Quick Interactive Action Footprint -->
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-3 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95" title="Plan session for this game">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span> Plan
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95" title="Log a play count">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Log
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95" title="Lend to friend">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 2: Ark Nova -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group">
+<div>
+<!-- Artwork Container -->
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modern strategic wildlife zoo conservation tabletop board game cover Ark Nova showing animals enclosures modern architecture under crisp dramatic evening twilight photography aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvX_6o-9_nzbfSmQRBqeckywHUC_WlFT5rkivRsAWRc3sUiV9hivlVWlkklHhWKa_y0K2zMTwxsfQnAmhtXjnu06hV-ggniq3W8pglInv0iFvMlbFgRFt4t2l2BoHid4Xo0aribI0fYlHmpiQLrXw8Mo2gdHOCDes8YMAandfzIlDmxwy2Wuf1nwNt-jap4rAe9ca0Lrs5rQnGu8tXPw278MwzV77gtXxuD0787Pw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #4
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="fitness_center">fitness_center</span> 3.7
+              </span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Shelf B-1
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Ark Nova
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Mathias Wigge (2021) • Feuerland</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 1–4 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 90–150m
+              </span>
+<span class="text-label-sm text-on-surface-variant">Last: 4d ago</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary-fixed border border-primary/20 text-label-sm font-label-sm">
+                Marine Worlds Expansion
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Folded Space Insert
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-3 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span> Plan
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Log
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 3: Brass: Birmingham (Lent Out State) -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group border-amber-500/30">
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Moody Victorian industrial revolution board game cover art of Brass Birmingham with glowing coal lanterns ironworks canals and dark smoky atmosphere premium dark aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOMPHublTNgFtQvTgxxSdnFYr5LAauXbWRROOMK4jPdmfhMGztMXjIRR8Y2wCM0hUmoHmtwUaFycI_ziTSpFMH3NIPtWixOSKOvptu9JHJd1c6b8tTeeh9qQ5V_84L6ObF3pLKVkTQAX9KVL1CT5zh4ya7FU3IqJVP-w5PSVbIbY9sJPTThqAQ6S2_vv4dqghGgvJCO0TNCinDOivNG9E79OAk3drhb7--PpSCLH8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(160,120,255,0.4)]">
+<span class="material-symbols-outlined text-xs" data-icon="military_tech">military_tech</span> BGG #1 Overall
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm">
+                3.9
+              </span>
+</div>
+<!-- Custody Warning Indicator -->
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-amber-950/80 backdrop-blur-md border border-amber-500/40 text-amber-300 font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span> Lent Out
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Brass: Birmingham
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Gavan Brown, Martin Wallace • Roxley</p>
+</div>
+<!-- Current Custody Box -->
+<div class="p-2 rounded-lg bg-amber-950/30 border border-amber-500/20 text-label-sm font-label-sm flex items-center justify-between text-amber-200">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-amber-400" data-icon="person">person</span>
+<span>Lent to <strong>David Chen</strong></span>
+</div>
+<span class="text-amber-400/80">Due May 18</span>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 2–4 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 60–120m
+              </span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Iron Clays Deluxe
+              </span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-label-sm font-label-sm">
+                Heavy Euro
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-2 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="notifications_active">notifications_active</span> Remind David
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> Mark Returned
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 4: Root -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Intricate stylized woodland forest animal warrior board game cover Root showing cat marquise and bird eyrie commanders in high fidelity atmospheric nocturnal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt492BrVxYCNq-xwQenCuIeKyaqsjlRpG-6ve1pO61uSChbKZbo5VDh2yVEDlCxsbSDRKy6G-N0dTmpJwUsFsIeAzMeAMZk6xaROQTlPQMEwd4q4gBvlD_idxaOxGhekiPqbLmU3qZ0GkMz3ISvuMVZMIRd4-Dvb74Q6Tp3PzUqq1wHkeQU6NIa5hTmjKUfeYeZjCxfnMB_HVuE5MsBmKFmC70mQI7LbNyW7HrSYk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #28
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm">
+                3.8
+              </span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Vault
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Root
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Cole Wehrle • Leder Games</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 2–6 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 60–90m
+              </span>
+<span class="text-label-sm text-on-surface-variant">2w ago</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-label-sm font-label-sm">
+                Riverfolk + Underworld
+              </span>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/20 text-label-sm font-label-sm">
+                Sleeved
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-3 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span> Plan
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Log
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 5: Twilight Imperium 4th Ed (Scheduled Night Host) -->
+<article class="glass-card glow-active rounded-xl overflow-hidden flex flex-col justify-between group relative">
+<div class="absolute -top-10 -right-10 w-36 h-36 bg-primary/20 rounded-full blur-2xl pointer-events-none"></div>
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Epic galactic space opera fleet miniatures board game Twilight Imperium Fourth Edition dreadnoughts cosmic war starships in dramatic deep space glowing violet stars nebula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxfB3GLwtolhRWZC-ELebnRnkgMJ6aObOigZEhmY2KK8BV9F1v-dVmTZPxIFK4Y0TmcB4PTubLujGc_Zqi27DT83LtRoBtgBMwntBgzVsT9YqYK_7KHJd0g8wZ-7uVfSKEoSnuKgrdoHS40WEc1vG07kWKiCDnxYvu5qOB2Rmt0E9VCFajvuR204Gshc3VlJ5fb_eZv63kseoLjmMIeHhuwSUugJ1_L0xfCRG9Nis"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #5
+              </span>
+<span class="px-2 py-0.5 rounded bg-purple-900/90 text-primary-fixed border border-primary font-label-sm text-label-sm font-bold">
+                4.3 Heavy
+              </span>
+</div>
+<!-- Friday Session Tag -->
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2.5 py-1 rounded-full bg-primary/90 text-on-primary-container font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-[0_0_12px_#d0bcff]">
+<span class="material-symbols-outlined text-xs" data-icon="campaign">campaign</span> Fri Game Night
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Twilight Imperium (4th Ed)
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Christian T. Petersen • Fantasy Flight</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 3–6 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 240–480m
+              </span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-fixed border border-primary/40 text-label-sm font-label-sm">
+                Prophecy of Kings Exp.
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Custom Fleet Stands
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="border-t border-white/5 pt-3">
+<button class="w-full py-2 px-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all flex items-center justify-center gap-2 shadow-[0_0_14px_rgba(139,92,246,0.4)] hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined text-base" data-icon="sports_esports">sports_esports</span> Manage Game Night Roster (5/6)
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 6: Terraforming Mars -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Terraforming Mars tabletop strategy board game artwork showing astronauts red planet dome cities greenery transformation and futuristic corporations with dark nocturnal purple atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA82bswOwNoWo4vGjKlQDJVchQRSNI8A56SSAZn0GmMpa7XzUY2spq-4cHKwis472cJcOcFIFjvyHUvqzy6WMxyB7V0-wWA3QiTDsJDaUc46Hfmz-Q91iLRgsj5KUSLE74-ySVM42Qh8nQFr9x6FKlh8p4lY0jL2XWSp1FJSIjLaXnXgmGPXwHGtMisBPtkt-0hcSfL6Dg8JDN11jF9tLfUvEY7BsafusiTByKFxZ0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #7
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm">
+                3.3
+              </span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Shelf A-4
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Terraforming Mars
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Jacob Fryxelius • FryxGames</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 1–5 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 90–120m
+              </span>
+<span class="text-tertiary-fixed font-bold text-label-sm">42 Plays Logged</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-label-sm font-label-sm">
+                Prelude Expansion
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Dual Layer Boards
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-3 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span> Plan
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Log
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 7: Spirit Island (Shelf of Shame Status) -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group border-error-container/40">
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Spirit Island cooperative board game box art with ethereal elemental magic glowing deities island defense against invaders dark moody nighttime tactical rendering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN_s1TclkCGx5SP-FB_b2BLN5FYNdPYT9uK_GC1iiLgVM6RTWrT_ztId2lZqg2T7HLSOlIr4i8W0kSFePwZ-fidoHpcXyHCh6DesPpsecRSfSTEkqIT06oKYL5BuO2qRThiiDYbEZFl5dGgfwOIchcDBv6FdbSp8bAKkhxSj3SukTePZqhN8xHYCkXFFcXJ9i_Gk5I7o1mTafUSahwEWwLpdXEs_5yPmgk6yCsRio"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #11
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm">
+                4.1 Heavy
+              </span>
+</div>
+<!-- Shelf of Shame Warning Badge -->
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-error-container/80 backdrop-blur-md border border-error/40 text-error font-label-sm text-label-sm flex items-center gap-1 shadow-[0_0_8px_rgba(255,180,171,0.2)]">
+<span class="material-symbols-outlined text-xs" data-icon="hourglass_empty">hourglass_empty</span> Shelf of Shame
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Spirit Island
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">R. Eric Reuss • Greater Than Games</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 1–4 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 90–120m
+              </span>
+<span class="text-error font-label-sm">Unplayed (120d)</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-label-sm font-label-sm">
+                Jagged Earth Exp.
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Co-op Defense
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-2 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-primary/20 hover:bg-primary/30 border border-primary/30 text-primary-fixed font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span> Break Curse (Plan)
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend Out
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 8: Castles of Burgundy (Special Edition) -->
+<article class="glass-card rounded-xl overflow-hidden flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="The Castles of Burgundy Special Edition board game artwork showing French medieval estates vineyards castles acrylic hex terrain in elegant dark moody showcase lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL38tCu-Ya6thb9f_jNmyU5c3ynp5BijSyRQB2JAWQKDEuYBXS0es4zN9dU5EcredqCiA2QYLRDLcjpjySBtmeyb-nXVfR3PLvj5W0mY3nw1c0R0ZqDEi1_03JSBLmpjpV7mS9hec70Wz8MmU3p3lNB3AmTlH3rYL3D67JKiCAdnY84k6dabqBkg0cLbemPQYU9pcZlVYiXkax5GlO7KtvxF2d411zKVr1Dp0dwxY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181824] via-transparent to-black/40"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white font-label-sm text-label-sm">
+                BGG #17
+              </span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/90 backdrop-blur-md border border-primary/40 text-primary-fixed font-label-sm text-label-sm">
+                3.0 Medium
+              </span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md border border-white/10 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Shelf C-3
+              </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-2.5">
+<div>
+<div class="flex items-center justify-between gap-1">
+<h2 class="text-title-md font-title-md text-white font-bold leading-tight group-hover:text-primary transition-colors">
+                  Castles of Burgundy (Deluxe)
+                </h2>
+<button aria-label="Game options" class="text-outline hover:text-white p-1 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Stefan Feld • Awaken Realms</p>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline py-1 border-y border-white/5">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="groups">groups</span> 1–4 Players
+              </span>
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="schedule">schedule</span> 70–120m
+              </span>
+<span class="text-tertiary">Classic Euro</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 text-label-sm font-label-sm">
+                Acrylic Hexes
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-white/10 text-label-sm font-label-sm">
+                Cloth Bags Included
+              </span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0 mt-2">
+<div class="grid grid-cols-3 gap-1.5 border-t border-white/5 pt-3">
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span> Plan
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Log
+            </button>
+<button class="py-1.5 px-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all flex items-center justify-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="outbox">outbox</span> Lend
+            </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Shelf Stats & Quick Batch Drawer (Bottom Anchor Bar) -->
+<section class="glass-card rounded-xl p-space-md border border-white/10 flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container-low/70">
+<!-- Metrics Highlights -->
+<div class="flex flex-wrap items-center gap-y-2 gap-x-space-lg text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="scale">scale</span>
+<span>Shelf Weight: <strong class="text-white font-stats-num text-sm">3.4</strong> Avg Complexity</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="shield">shield</span>
+<span>Sleeving Integrity: <strong class="text-white font-stats-num text-sm">134 / 142</strong> (94%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="timer">timer</span>
+<span>Est. Setup Time: <strong class="text-white font-stats-num text-sm">12m</strong> avg</span>
+</div>
+</div>
+<!-- Pagination & Collection Navigator -->
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-between md:justify-end">
+<span class="text-label-sm font-label-sm text-outline">
+          Showing <strong class="text-white">8</strong> of <strong class="text-white">142</strong> titles
+        </span>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded bg-surface-container-lowest text-outline/40 cursor-not-allowed border border-white/5" disabled="">
+<span class="material-symbols-outlined text-base" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-primary/20 border border-primary/40 text-primary font-label-sm text-label-sm">1</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">2</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">3</button>
+<span class="text-outline text-label-sm px-1">...</span>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">18</button>
+<button class="p-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Execution) -->
+<footer class="docked full-width bottom bg-surface-container-lowest dark:bg-surface-container-lowest mt-space-xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin py-space-lg max-w-[1440px] mx-auto gap-space-md">
+<!-- Brand & Copyright -->
+<div class="flex flex-col md:flex-row items-center gap-space-md text-center md:text-left">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="token" style="font-variation-settings: 'FILL' 1;">token</span>
+<span class="text-headline-sm font-headline-sm text-on-surface dark:text-on-surface font-bold tracking-tight">BoardNight</span>
+</div>
+<span class="hidden md:inline text-outline-variant">•</span>
+<p class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm">
+          © 2025 BoardNight. Crafted for nocturnal tabletop strategists.
+        </p>
+</div>
+<!-- Footer Links Array exactly matching JSON -->
+<nav class="flex flex-wrap justify-center items-center gap-x-space-md gap-y-2">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Rules & Guides</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Host Handbook</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">API & BGG Sync</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Discord Server</a>
+</nav>
+</div>
+</footer>
+<!-- Subtle Interactive Micro-Scripts for UI polish -->
+<script>
+    // Lightweight toggle for interactive filter chips
+    document.querySelectorAll('section button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        // Simple visual feedback without breaking external logic
+        if (this.innerText.includes('Reset')) {
+          const searchInput = document.querySelector('input[type="text"]');
+          if (searchInput) searchInput.value = '';
+        }
+      });
+    });
+  </script>
+</body></html>

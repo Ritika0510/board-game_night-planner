@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_SHADER_START:ANIMATION_2 class="fixed inset-0 w-full h-full" -->
+<div class="fixed inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+
+// Random hash for dithering
+float hash(vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+void main() {
+    // Pixel size 2.0
+    float pixelSize = 2.0;
+    vec2 coord = floor(gl_FragCoord.xy / pixelSize) * pixelSize;
+    vec2 uv = (coord - 0.5 * u_resolution.xy) / min(u_resolution.y, u_resolution.x);
+
+    // Background color: #000000
+    vec3 bgColor = vec3(0.0, 0.0, 0.0);
+    // Foreground sphere color: #f43f5e (RGB: 0.957, 0.247, 0.369)
+    vec3 sphereColor = vec3(0.9568, 0.2471, 0.3686);
+
+    float radius = 0.36;
+    float dist = length(uv);
+
+    // Animation speed 1.5
+    float t = u_time * 1.5;
+
+    if (dist < radius) {
+        // Calculate 3D sphere normal
+        float z = sqrt(max(0.0, radius * radius - dist * dist));
+        vec3 normal = normalize(vec3(uv.x, uv.y, z));
+
+        // Dynamic light source orbiting
+        vec3 lightDir = normalize(vec3(cos(t), sin(t * 0.7), 1.2));
+        float diff = max(dot(normal, lightDir), 0.0);
+
+        // Specular highlight
+        vec3 viewDir = vec3(0.0, 0.0, 1.0);
+        vec3 halfDir = normalize(lightDir + viewDir);
+        float spec = pow(max(dot(normal, halfDir), 0.0), 16.0);
+
+        // Rotating surface pattern (longitude/latitude bands & noise)
+        float phi = atan(normal.y, normal.x) + t * 0.4;
+        float theta = acos(clamp(normal.z, -1.0, 1.0));
+        float stripes = sin(phi * 8.0 + sin(theta * 10.0 + t)) * 0.5 + 0.5;
+        
+        // Intensity blend
+        float intensity = diff * 0.7 + spec * 0.5 + stripes * 0.2;
+        intensity = clamp(intensity, 0.0, 1.0);
+
+        // Random dithering
+        float ditherThreshold = hash(coord + fract(u_time * 0.1) * 100.0);
+        
+        // Edge rim glow
+        float rim = 1.0 - normal.z;
+        intensity += pow(rim, 3.0) * 0.3;
+
+        if (intensity > ditherThreshold) {
+            gl_FragColor = vec4(sphereColor, 1.0);
+        } else {
+            // Darker shaded tone in the dithering pattern
+            gl_FragColor = vec4(sphereColor * 0.12, 1.0);
+        }
+    } else {
+        // Subtle ambient dust/glow just outside the sphere
+        float edgeGlow = smoothstep(radius + 0.08, radius, dist) * 0.15;
+        float dustDither = hash(coord + fract(u_time * 0.2) * 50.0);
+        if (edgeGlow > dustDither * 0.7) {
+            gl_FragColor = vec4(sphereColor * edgeGlow * 0.8, 1.0);
+        } else {
+            gl_FragColor = vec4(bgColor, 1.0);
+        }
+    }
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+</body>
+</html>

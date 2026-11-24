@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoardNight - Signup &amp; Onboarding</title>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#bea8ff",
+            "primary-fixed-dim": "#d0bcff",
+            "inverse-surface": "#e4e1ef",
+            "on-primary-container": "#340080",
+            "surface-container-lowest": "#0d0d17",
+            "surface-container-high": "#292934",
+            "primary-container": "#a078ff",
+            "outline": "#958ea0",
+            "on-secondary": "#381385",
+            "tertiary-fixed": "#6bff8f",
+            "inverse-primary": "#6d3bd7",
+            "surface-bright": "#393843",
+            "on-tertiary-container": "#003111",
+            "surface-container": "#1f1f29",
+            "secondary-fixed-dim": "#cebdff",
+            "on-tertiary": "#003915",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#005321",
+            "surface-variant": "#34343f",
+            "secondary-container": "#4f319c",
+            "outline-variant": "#494454",
+            "on-error": "#690005",
+            "on-primary-fixed": "#23005c",
+            "on-tertiary-fixed": "#002109",
+            "tertiary": "#4ae176",
+            "on-secondary-fixed-variant": "#4f319c",
+            "on-surface-variant": "#cbc3d7",
+            "on-background": "#e4e1ef",
+            "on-primary-fixed-variant": "#5516be",
+            "primary": "#d0bcff",
+            "tertiary-fixed-dim": "#4ae176",
+            "error": "#ffb4ab",
+            "on-primary": "#3c0091",
+            "background": "#12121c",
+            "surface-tint": "#d0bcff",
+            "surface-container-highest": "#34343f",
+            "primary-fixed": "#e9ddff",
+            "on-secondary-fixed": "#21005e",
+            "secondary-fixed": "#e8ddff",
+            "on-surface": "#e4e1ef",
+            "surface-container-low": "#1b1b25",
+            "surface-dim": "#12121c",
+            "tertiary-container": "#00a74b",
+            "error-container": "#93000a",
+            "surface": "#12121c",
+            "secondary": "#cebdff",
+            "inverse-on-surface": "#302f3a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "stats-num": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "stats-num": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom subtle nocturne scrollbars and glows */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090F;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #292934;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #494454;
+    }
+
+    .glass-card {
+      background: rgba(24, 24, 36, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card-interactive {
+      background: rgba(24, 24, 36, 0.6);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-interactive:hover {
+      border-color: rgba(167, 139, 250, 0.45);
+      box-shadow: 0 0 24px -4px rgba(139, 92, 246, 0.25);
+    }
+
+    .violet-glow-btn {
+      background: linear-gradient(180deg, #A78BFA 0%, #8B5CF6 100%);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
+      transition: all 0.2s ease;
+    }
+    .violet-glow-btn:hover {
+      box-shadow: 0 0 28px rgba(139, 92, 246, 0.7);
+      transform: translateY(-1px);
+    }
+    .violet-glow-btn:active {
+      transform: scale(0.98);
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #8B5CF6;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 0 12px #8B5CF6;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .holo-passport {
+      background: linear-gradient(135deg, rgba(31, 31, 41, 0.85) 0%, rgba(18, 18, 28, 0.95) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 35px -5px rgba(139, 92, 246, 0.2);
+    }
+
+    .neon-pulse-ring {
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.4), 0 0 15px rgba(139, 92, 246, 0.6);
+    }
+  </style>
+</head>
+<body class="bg-[#09090F] text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary selection:text-on-primary-container relative overflow-x-hidden">
+<!-- Ambient Nocturnal Background Radiance -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[140px]"></div>
+<div class="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[130px]"></div>
+<div class="absolute -bottom-40 left-1/3 w-[700px] h-[500px] bg-[#1a103c]/40 rounded-full blur-[160px]"></div>
+<div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px] opacity-70"></div>
+</div>
+<!-- 1. Top Minimal Navigation Bar (Onboarding Shell: Focused Flow) -->
+<header class="sticky top-0 z-50 w-full bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin max-w-[1440px] mx-auto h-16">
+<!-- Brand Logo with Neon Dice Emblem -->
+<a class="flex items-center gap-space-sm group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-primary/40 flex items-center justify-center shadow-[0_0_15px_rgba(139,92,246,0.35)] group-hover:border-primary group-hover:shadow-[0_0_22px_rgba(139,92,246,0.6)] transition-all">
+<span class="material-symbols-outlined text-primary text-[24px]" style="font-variation-settings: 'FILL' 1;">casino</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md tracking-tight text-primary font-bold leading-none">BoardNight</span>
+<span class="text-label-sm font-label-sm text-outline tracking-wider uppercase">Tactical Session Engine</span>
+</div>
+</a>
+<!-- Stepper Indicator in Center (Desktop & Tablet) -->
+<nav aria-label="Onboarding Progress" class="hidden md:flex items-center gap-space-md py-1 px-4 rounded-full bg-surface-container-lowest/80 border border-outline-variant/30">
+<!-- Step 1: Completed -->
+<div class="flex items-center gap-2 text-tertiary">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/30 border border-tertiary flex items-center justify-center text-[12px] font-bold text-tertiary shadow-[0_0_8px_rgba(74,225,118,0.4)]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface">Account Setup</span>
+</div>
+<div class="w-8 h-[1px] bg-tertiary/40"></div>
+<!-- Step 2: Active -->
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[12px] font-bold shadow-[0_0_12px_rgba(160,120,255,0.7)] animate-pulse">
+            2
+          </div>
+<span class="text-label-sm font-label-sm text-primary font-bold">DNA &amp; Playstyle</span>
+</div>
+<div class="w-8 h-[1px] bg-outline-variant/40"></div>
+<!-- Step 3: Pending -->
+<div class="flex items-center gap-2 opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-[12px] text-outline">
+            3
+          </div>
+<span class="text-label-sm font-label-sm text-outline">Vault Sync</span>
+</div>
+</nav>
+<!-- Right Action Items -->
+<div class="flex items-center gap-space-md">
+<a class="hidden lg:flex items-center gap-1.5 text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span>Talk to Guild Master</span>
+</a>
+<div class="hidden lg:block w-[1px] h-5 bg-outline-variant/40"></div>
+<a class="flex items-center gap-1 text-label-md font-label-md text-on-surface-variant hover:text-error transition-colors px-2.5 py-1 rounded-lg hover:bg-surface-container-high/40" href="#">
+<span class="material-symbols-outlined text-[18px]">close</span>
+<span class="hidden sm:inline">Exit to Home</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Mobile Step Strip Indicator -->
+<div class="md:hidden w-full bg-surface-container-lowest px-4 py-2 border-b border-outline-variant/20 flex justify-between items-center text-label-sm font-label-sm z-30">
+<div class="flex items-center gap-2 text-primary font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>Stage 2 of 3: Tactical DNA</span>
+</div>
+<span class="text-outline">Step 2: Gaming DNA</span>
+</div>
+<!-- Main Onboarding Experience Container -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin py-space-lg md:py-space-xl relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- ========================================== -->
+<!-- LEFT / MAIN CONFIGURATION COLUMN (8 Cols)  -->
+<!-- ========================================== -->
+<section class="lg:col-span-7 xl:col-span-8 flex flex-col gap-space-lg">
+<!-- Step Header -->
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-secondary-container/40 border border-primary/30 text-primary-fixed-dim text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#8B5CF6]"></span>
+<span>New Tactician Onboarding</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mt-1">
+            Forge Your Player Passport
+          </h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl">
+            Customize your strategist credentials, declare your tabletop weight affinity, and link your physical vault to sync your collection automatically.
+          </p>
+</div>
+<form class="flex flex-col gap-space-lg" id="onboardingForm" onsubmit="event.preventDefault();">
+<!-- SECTION A: STRATEGIST IDENTITY -->
+<div class="glass-card rounded-xl p- space-md md:p-space-lg flex flex-col gap-space-md border border-outline-variant/30">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center font-bold text-label-md">01</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Strategist Identity</h2>
+<p class="text-body-sm font-body-sm text-outline">Visible to tabletop coordinators and party members</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield</span> Verified Identity
+              </span>
+</div>
+<!-- Avatar Selection Hub -->
+<div class="flex flex-col gap-3">
+<label class="text-label-md font-label-md text-on-surface">Choose Tactical Portrait</label>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+<!-- Avatar 1: Cyber Strategist (Selected) -->
+<button class="avatar-option group relative rounded-xl p-1.5 bg-surface-container-high/60 border-2 border-primary neon-pulse-ring flex flex-col items-center gap-1.5 transition-all" data-avatar-icon="smart_toy" data-avatar-name="Cyber Strategist" type="button">
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center relative border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="Futuristic cyber strategist cyberpunk avatar portrait glowing neon purple visor tabletop gamer mascot deep violet background high detail render" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaYAJxOKj2bT4a7P48KLbSTXDN2S1rPPlOZLJThhi_6V7TiedAsm5-49BfIRgLxqZia62MahxNO_fAXC90ghRtZFhzuNt4a3ZEQ9D7yrFBkqE8r-eTkJUuCILFZCBoMoXQUSVTETkSw2gTTdoVy0E6e6iJF0a5q39Xm7j-yVef-4Br8iBkvjZAmIHhHrYLuWZ2Vt7cwx7IknS5Ab4byunntJybAMxxdBbBAV_cM3c"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<span class="text-[11px] font-label-sm text-primary font-bold truncate max-w-full">Cyber Scout</span>
+<div class="avatar-check absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-primary text-on-primary-container flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+</button>
+<!-- Avatar 2: Fantasy Archmage -->
+<button class="avatar-option group relative rounded-xl p-1.5 bg-surface-container-low border border-outline-variant/30 hover:border-primary/50 flex flex-col items-center gap-1.5 transition-all opacity-80 hover:opacity-100" data-avatar-icon="auto_fix_high" data-avatar-name="Arcane Tactician" type="button">
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center relative border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="Fantasy arcane archmage wizard with illuminated violet spell runes tabletop gaming avatar cinematic portrait dark moody fantasy aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7YzUPJjLb7rlJLjRbSc0xHdKuTSXxqS1yzWKicSE3yt9475VqfG18BmmbOVmamvq-LH02IqmheWeE8STRHbV9xq-bP9RIV3A0aBw3weC1tMasxY8KkGZ1ZXvN-YVXiNjuaUg-LLeZECAfjzjyWWlX__18yU5SEHKjuk4_gphJpDKL-ipFShiySYUm8c2E-tGGgzXQwqwkas-SHJBZoECH-MckezHA7W_801KFQvk"/>
+</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant truncate max-w-full">Archmage</span>
+</button>
+<!-- Avatar 3: Space Fleet Admiral -->
+<button class="avatar-option group relative rounded-xl p-1.5 bg-surface-container-low border border-outline-variant/30 hover:border-primary/50 flex flex-col items-center gap-1.5 transition-all opacity-80 hover:opacity-100" data-avatar-icon="rocket_launch" data-avatar-name="Void Admiral" type="button">
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center relative border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="Sci-fi space fleet admiral dressed in sleek obsidian uniform with glowing rank insignia dramatic tabletop sci-fi character portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDil6WiAqsrexHU7KDBu4po-KQmj6fOqx-tGm-lAW0TQwYWe7IOc5LxxLjgrHFettXHagr9uawIr6qJ_RW7-vlnNnOKaitZCU2T2qxwjBOCMxcgLkCjhCEmZC5AULzA_C__qtDuXanJ0s1ZAEMvo65Y6zWmi8LHhJmcssHMhXw7iqf77HPBC7PiNOjEqunfO5VKPz-A7w_jQ71p2RUL5lSMUzOIhyvJJwa8D2EeC3I"/>
+</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant truncate max-w-full">Void Admiral</span>
+</button>
+<!-- Avatar 4: Cyberpunk Meeple -->
+<button class="avatar-option group relative rounded-xl p-1.5 bg-surface-container-low border border-outline-variant/30 hover:border-primary/50 flex flex-col items-center gap-1.5 transition-all opacity-80 hover:opacity-100" data-avatar-icon="token" data-avatar-name="Carved Meeple" type="button">
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center relative border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="Luminescent neon glass tabletop wooden meeple silhouette glowing with purple internal filament cinematic lighting dark slate background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqwlRmUte3hC8QuBEO-dUWYIvsEePitvn1uhZVxzjutZpseGAe1UUd-Upb6hFtWJzwLZiJjWvRv1jQ6BxU25gf-RvFdASlDS55aBCqODGtyw3nmtbjio2uaAUy1jfzdDsEWIFHtYwI3mXj0ST2VTuKmW7Cprel6Ph3n-6w3xUVMaBqz9Sf7C1deH_Wwx9M57aPRatsyiTU1w7ooY24wVIfiSH_HOvX_h6LqFSSrRc"/>
+</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant truncate max-w-full">Luxe Meeple</span>
+</button>
+<!-- Custom Upload Trigger -->
+<button class="rounded-xl p-1.5 bg-surface-container-low/50 border border-dashed border-outline hover:border-primary flex flex-col items-center justify-center gap-1 transition-all group h-[88px]" type="button">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>
+</div>
+<span class="text-[11px] font-label-sm text-outline group-hover:text-primary">Upload Custom</span>
+</button>
+</div>
+</div>
+<!-- Name and Guild Handle Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface flex items-center gap-1" for="displayNameInput">
+                  Display Name <span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">badge</span>
+<input class="w-full bg-[#09090F] border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-10 pr-3 py-2.5 text-body-md text-on-surface placeholder-outline/60 outline-none transition-all" id="displayNameInput" type="text" value="Elena Rostova"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface flex items-center gap-1" for="handleInput">
+                  Guild Tactician Handle <span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-primary font-bold text-label-md">@</span>
+<input class="w-full bg-[#09090F] border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-8 pr-3 py-2.5 text-body-md text-on-surface placeholder-outline/60 outline-none transition-all" id="handleInput" type="text" value="ElenaTactics"/>
+</div>
+</div>
+</div>
+<!-- Tactical Playstyle Title Selection Pills -->
+<div class="flex flex-col gap-2 pt-1">
+<label class="text-label-md font-label-md text-on-surface">Tactical Archetype Title</label>
+<div class="flex flex-wrap gap-2">
+<button class="title-pill px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-on-surface border border-primary/60 shadow-[0_0_10px_rgba(139,92,246,0.3)] transition-all" type="button">
+                  Grand Strategist
+                </button>
+<button class="title-pill px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 text-outline border border-outline-variant/40 hover:text-on-surface hover:border-outline transition-all" type="button">
+                  Engine Architect
+                </button>
+<button class="title-pill px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 text-outline border border-outline-variant/40 hover:text-on-surface hover:border-outline transition-all" type="button">
+                  Chaos Instigator
+                </button>
+<button class="title-pill px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 text-outline border border-outline-variant/40 hover:text-on-surface hover:border-outline transition-all" type="button">
+                  Cooperative Medic
+                </button>
+<button class="title-pill px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high/60 text-outline border border-outline-variant/40 hover:text-on-surface hover:border-outline transition-all" type="button">
+                  Rulebook Arbiter
+                </button>
+</div>
+</div>
+</div>
+<!-- SECTION B: TABLETOP DNA & WEIGHT PREFERENCE -->
+<div class="glass-card rounded-xl p-space-md md:p-space-lg flex flex-col gap-space-md border border-outline-variant/30">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center font-bold text-label-md">02</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Tabletop DNA &amp; Weight Affinity</h2>
+<p class="text-body-sm font-body-sm text-outline">Powers your game night matchmaking and recommendations</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-label-sm font-label-sm text-primary-fixed-dim">BGG Calibrated</span>
+</div>
+<!-- Complexity Preference Range Selector -->
+<div class="flex flex-col gap-3 bg-surface-container-lowest/60 p-4 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-baseline">
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface">Complexity Weight Affinity</span>
+<span class="text-label-sm font-label-sm text-outline">(BGG Scale 1.0 - 5.0)</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-primary/15 border border-primary/40">
+<span class="text-stats-num font-stats-num text-primary" id="weightValueDisplay">3.8</span>
+<span class="text-label-sm font-label-sm text-primary font-semibold">/ 5.0</span>
+<span class="ml-1 text-[11px] text-primary-fixed-dim font-bold uppercase tracking-wider" id="weightLabelDisplay">Heavy Strategy</span>
+</div>
+</div>
+<!-- Interactive Range Bar -->
+<div class="relative py-2">
+<input class="range-slider w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" id="weightSlider" max="5.0" min="1.0" step="0.1" type="range" value="3.8"/>
+<div class="flex justify-between text-[11px] font-label-sm text-outline mt-2">
+<span class="flex flex-col items-start">
+<span>1.0</span>
+<span class="text-outline/70">Casual / Party</span>
+</span>
+<span class="flex flex-col items-center">
+<span>2.5</span>
+<span class="text-outline/70">Medium Euro</span>
+</span>
+<span class="flex flex-col items-center text-primary font-semibold">
+<span>3.8 ★</span>
+<span class="text-primary-fixed-dim">Heavy Strategy</span>
+</span>
+<span class="flex flex-col items-end">
+<span>5.0</span>
+<span class="text-outline/70">Heavy Brainburner / War</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Favorite Mechanics Multi-Select Chips -->
+<div class="flex flex-col gap-2.5">
+<div class="flex justify-between items-center">
+<label class="text-label-md font-label-md text-on-surface">Favorite Tabletop Mechanics</label>
+<span class="text-label-sm font-label-sm text-outline">Select up to 4</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" id="mechanicsContainer">
+<!-- Worker Placement (Selected) -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-primary/15 border border-primary/60 text-on-surface transition-all text-left shadow-[0_0_12px_rgba(139,92,246,0.15)]" data-mechanic="Worker Placement" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">group_work</span>
+<span class="text-body-sm font-body-sm font-medium">Worker Placement</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</button>
+<!-- Engine Building (Selected) -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-primary/15 border border-primary/60 text-on-surface transition-all text-left shadow-[0_0_12px_rgba(139,92,246,0.15)]" data-mechanic="Engine Building" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">precision_manufacturing</span>
+<span class="text-body-sm font-body-sm font-medium">Engine Building</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</button>
+<!-- Area Control & Skirmish (Selected) -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-primary/15 border border-primary/60 text-on-surface transition-all text-left shadow-[0_0_12px_rgba(139,92,246,0.15)]" data-mechanic="Area Control" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">swords</span>
+<span class="text-body-sm font-body-sm font-medium">Area Control &amp; Skirmish</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</button>
+<!-- Heavy Economic & Logistics -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline hover:text-on-surface transition-all text-left" data-mechanic="Heavy Economic" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+<span class="text-body-sm font-body-sm font-medium">Heavy Economic &amp; Logistics</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 text-[16px]">circle</span>
+</button>
+<!-- Hidden Roles & Deception -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline hover:text-on-surface transition-all text-left" data-mechanic="Hidden Roles" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility_off</span>
+<span class="text-body-sm font-body-sm font-medium">Hidden Roles &amp; Deception</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 text-[16px]">circle</span>
+</button>
+<!-- Deck Building -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline hover:text-on-surface transition-all text-left" data-mechanic="Deck Building" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">style</span>
+<span class="text-body-sm font-body-sm font-medium">Deck Building</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 text-[16px]">circle</span>
+</button>
+<!-- Cooperative Survival -->
+<button class="mechanic-chip flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline hover:text-on-surface transition-all text-left" data-mechanic="Coop Survival" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+<span class="text-body-sm font-body-sm font-medium">Cooperative Survival</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 text-[16px]">circle</span>
+</button>
+</div>
+</div>
+<!-- Player Count Preference Toggles -->
+<div class="flex flex-col gap-2 pt-1">
+<label class="text-label-md font-label-md text-on-surface">Ideal Table Squad Size</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<button class="player-btn px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline text-body-sm font-body-sm text-center transition-all" type="button">
+                  1-2 Duelists
+                </button>
+<button class="player-btn px-3 py-2 rounded-lg bg-primary/20 border border-primary text-primary font-semibold text-body-sm font-body-sm text-center shadow-[0_0_10px_rgba(139,92,246,0.25)] transition-all" type="button">
+                  3-4 Classic Euro Group
+                </button>
+<button class="player-btn px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline text-body-sm font-body-sm text-center transition-all" type="button">
+                  5-6 Epic War / TI4
+                </button>
+<button class="player-btn px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/30 text-outline hover:border-outline text-body-sm font-body-sm text-center transition-all" type="button">
+                  7+ Party Mayhem
+                </button>
+</div>
+</div>
+</div>
+<!-- SECTION C: BGG & VAULT INTEGRATION -->
+<div class="glass-card rounded-xl p-space-md md:p-space-lg flex flex-col gap-space-md border border-outline-variant/30">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center font-bold text-label-md">03</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">BoardGameGeek &amp; Vault Synchronization</h2>
+<p class="text-body-sm font-body-sm text-outline">Import your physical collection with real-time XML API sync</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary border border-tertiary/40 text-label-sm font-label-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                API Connected
+              </span>
+</div>
+<!-- BGG Input & Toggle -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface" for="bggUser">BoardGameGeek Username</label>
+<div class="relative">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</div>
+<input class="w-full bg-[#09090F] border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-9 pr-3 py-2.5 text-body-md text-on-surface placeholder-outline/60 outline-none" id="bggUser" type="text" value="ElenaRostova_BG"/>
+</div>
+</div>
+<!-- Auto-sync switch -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-lowest/70 border border-outline-variant/20 mt-1 md:mt-5">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface">Auto-sync BGG Catalog</span>
+<span class="text-body-sm font-body-sm text-outline">Sync plays, ratings &amp; wishlist</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-[0_0_10px_rgba(139,92,246,0.3)]"></div>
+</label>
+</div>
+</div>
+<!-- Quick Sync Preview Checklist Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+<div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-surface-container-low/60 border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary text-[20px]">inventory_2</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface">Import 40+ Titles</span>
+<span class="text-label-sm font-label-sm text-outline">Automatic box art matching</span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-surface-container-low/60 border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary text-[20px]">stars</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface">Sync Play History</span>
+<span class="text-label-sm font-label-sm text-outline">H-Index &amp; win percentages</span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-surface-container-low/60 border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary text-[20px]">handshake</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface">Lending Credentials</span>
+<span class="text-label-sm font-label-sm text-outline">Carekeeper trust badge</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar (Sticky or In-flow at bottom of form) -->
+<div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline-variant/20">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-surface-container-high/60 border border-outline-variant/40 text-on-surface hover:bg-surface-container-high hover:border-outline text-label-md font-label-md flex items-center justify-center gap-2 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back: Account Details</span>
+</button>
+<div class="w-full sm:w-auto flex flex-col items-center sm:items-end gap-1">
+<button class="violet-glow-btn w-full sm:w-auto px-7 py-3 rounded-lg text-on-primary font-headline-sm font-bold flex items-center justify-center gap-2" type="submit">
+<span>Finalize Passport &amp; Enter Vault</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<span class="text-label-sm font-label-sm text-outline text-center">
+                Free forever for tabletop groups up to 10 players. No credit card required.
+              </span>
+</div>
+</div>
+</form>
+</section>
+<!-- ============================================================= -->
+<!-- RIGHT COLUMN: REAL-TIME DYNAMIC PASSPORT CARD PREVIEW (4/5 Cols) -->
+<!-- ============================================================= -->
+<aside class="lg:col-span-5 xl:col-span-4 sticky top-24 flex flex-col gap-space-md">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shadow-[0_0_8px_#4ae176]"></span>
+<span class="text-label-md font-label-md text-on-surface font-semibold uppercase tracking-wider">Live Passport Preview</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary-fixed-dim bg-secondary-container/40 px-2 py-0.5 rounded border border-primary/20">Holographic ID</span>
+</div>
+<!-- Sleek Floating Glassmorphic Holographic Passport Card -->
+<div class="holo-passport rounded-xl p-space-md flex flex-col gap-space-md relative overflow-hidden transition-all duration-300">
+<!-- Hologram scanline flare -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
+<!-- Header Banner -->
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+<div class="flex flex-col">
+<span class="text-[11px] font-label-sm tracking-widest text-primary font-mono font-bold">TACTICAL PASSPORT</span>
+<span class="text-[12px] font-mono text-outline">PROVISIONAL ID #0942</span>
+</div>
+<div class="w-7 h-7 rounded bg-surface-container-high/80 border border-primary/40 flex items-center justify-center text-primary shadow-[0_0_8px_rgba(139,92,246,0.3)]">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+</div>
+</div>
+<!-- Strategist Passport Main Profile Block -->
+<div class="flex items-center gap-space-md">
+<!-- Glowing Portrait Ring -->
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-primary shadow-[0_0_16px_rgba(139,92,246,0.5)] bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="Tactical cyber strategist portrait with glowing violet eyes and minimalist gaming helmet dark sci-fi background high-contrast render" id="previewAvatarImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5gpH1SWJsor_oCqLxDtOzXzMGWWHhLcyk6_of66iG15IWGToVYGZVd8d6PWWQqCR_VD8QGtdPl33zDn0pMbb3t9mY4oORHg26ozP7NnUCubvZInlpmdyaLd6YAs7vfoJzGNlZuqAVT5BX9QtJtQhqSj_rHuJdCoYRBCBwuz72-bpVULV5OvNyb3Nyd5l9CrFug_AWVFsbejmpiFdgKrownIHQHC8pMsg1g0E_bMo"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-secondary-container border border-primary flex items-center justify-center text-primary text-[12px] font-bold shadow-[0_0_8px_rgba(139,92,246,0.6)]">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+</div>
+</div>
+<!-- Identity Credentials -->
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold truncate" id="previewDisplayName">Elena Rostova</h3>
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="text-body-sm font-body-sm text-primary font-mono truncate" id="previewHandle">@ElenaTactics</span>
+<div class="mt-1 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-bold bg-primary-container text-on-primary-container uppercase tracking-wide">
+                  LVL 1 NOVICE TACTICIAN
+                </span>
+</div>
+</div>
+</div>
+<!-- Archetype Badge -->
+<div class="p-2.5 rounded-lg bg-surface-container-low/70 border border-outline-variant/30 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-outline">Declared Archetype</span>
+<span class="text-label-md font-label-md text-primary font-bold" id="previewArchetype">Grand Strategist</span>
+</div>
+<!-- DNA Radar Summary -->
+<div class="flex flex-col gap-2 bg-surface-container-lowest/70 p-3 rounded-lg border border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-on-surface font-semibold">DNA Radar Summary</span>
+<span class="text-label-sm font-label-sm text-primary-fixed-dim font-mono font-bold" id="previewWeightTag">Affinity 3.8 / 5.0</span>
+</div>
+<!-- Dual Progress Metrics -->
+<div class="space-y-1.5">
+<div class="flex justify-between text-[11px] text-outline">
+<span>Heavy Euro Strategic Load</span>
+<span class="text-on-surface font-mono">76%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-primary h-full rounded-full transition-all duration-300" id="previewWeightBar" style="width: 76%"></div>
+</div>
+</div>
+<!-- Top Favorite Mechanics Preview -->
+<div class="pt-1.5 border-t border-outline-variant/20 flex flex-wrap gap-1.5" id="previewMechanicsBadges">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">circle</span> Worker Placement
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">circle</span> Engine Building
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">circle</span> Area Control
+              </span>
+</div>
+</div>
+<!-- Tabletop Oath / Custody Pledge -->
+<div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-tertiary-container/15 border border-tertiary/30">
+<span class="material-symbols-outlined text-tertiary text-[20px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="flex flex-col">
+<span class="text-[12px] font-label-md text-tertiary font-bold">Pristine Custody Pledge Signed</span>
+<span class="text-[11px] text-on-surface-variant">Sleeved cards &amp; sorted organizers guaranteed</span>
+</div>
+</div>
+<!-- 'Ready for Game Night' Readiness Meter -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface font-semibold">Passport Readiness</span>
+<span class="text-tertiary font-mono font-bold">85% Configured</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-primary to-tertiary h-full rounded-full shadow-[0_0_8px_rgba(74,225,118,0.5)]" style="width: 85%"></div>
+</div>
+</div>
+<!-- Live Starter Perks Box -->
+<div class="p-3 rounded-lg bg-surface-container-low/90 border border-outline-variant/30 flex flex-col gap-2">
+<span class="text-[11px] font-label-sm text-outline uppercase tracking-wider font-semibold">Synchronized Perks Unlocked:</span>
+<div class="grid grid-cols-1 gap-1.5">
+<div class="flex items-center gap-2 text-[12px] text-on-surface">
+<span class="material-symbols-outlined text-primary text-[15px]">military_tech</span>
+<span>+500 Starter Tactician XP Granted</span>
+</div>
+<div class="flex items-center gap-2 text-[12px] text-on-surface">
+<span class="material-symbols-outlined text-primary text-[15px]">calendar_month</span>
+<span>Session Host Scheduler Enabled</span>
+</div>
+<div class="flex items-center gap-2 text-[12px] text-on-surface">
+<span class="material-symbols-outlined text-primary text-[15px]">barcode_scanner</span>
+<span>Vault Barcode Rapid Lens Activated</span>
+</div>
+</div>
+</div>
+<!-- Card Bottom Verification Watermark -->
+<div class="flex justify-between items-center text-[10px] font-mono text-outline/60 pt-1">
+<span>SIG: 9F2A-44C-NOCTURNE</span>
+<span>SECURED BY BOARDNIGHT VAULT</span>
+</div>
+</div>
+<!-- Ambient Assistance Mini-Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest/60 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">help</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface">Migrating from another tool?</span>
+<span class="text-body-sm font-body-sm text-outline">Import from BGStats or GeekGroup</span>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-primary hover:underline font-semibold" type="button">
+            One-Click Import
+          </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- 3. Footer (Shared Component Guidance) -->
+<footer class="mt-auto w-full bg-surface-container-lowest border-t border-outline-variant/20 py-space-lg">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin max-w-[1440px] mx-auto gap-space-md">
+<!-- Copyright text from JSON -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">casino</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+          © 2025 BoardNight. Crafted for nocturnal tabletop strategists.
+        </span>
+</div>
+<!-- Links from Shared Components JSON -->
+<nav class="flex flex-wrap items-center justify-center gap-space-md text-body-sm font-body-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Rules &amp; Guides</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Host Handbook</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">API &amp; BGG Sync</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">forum</span>
+<span>Discord Server</span>
+</a>
+</nav>
+</div>
+</footer>
+<!-- Micro-interactions Script for Real-Time Passport Feedback -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Display Name & Handle dynamic mirroring
+      const displayNameInput = document.getElementById('displayNameInput');
+      const handleInput = document.getElementById('handleInput');
+      const previewDisplayName = document.getElementById('previewDisplayName');
+      const previewHandle = document.getElementById('previewHandle');
+
+      if (displayNameInput && previewDisplayName) {
+        displayNameInput.addEventListener('input', (e) => {
+          previewDisplayName.textContent = e.target.value.trim() || 'Anonymous Tactician';
+        });
+      }
+
+      if (handleInput && previewHandle) {
+        handleInput.addEventListener('input', (e) => {
+          const val = e.target.value.trim();
+          previewHandle.textContent = val.startsWith('@') ? val : '@' + val;
+        });
+      }
+
+      // 2. Tactical Title Selection
+      const titlePills = document.querySelectorAll('.title-pill');
+      const previewArchetype = document.getElementById('previewArchetype');
+
+      titlePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          titlePills.forEach(p => {
+            p.classList.remove('bg-primary/20', 'text-on-surface', 'border-primary/60', 'shadow-[0_0_10px_rgba(139,92,246,0.3)]');
+            p.classList.add('bg-surface-container-high/60', 'text-outline', 'border-outline-variant/40');
+          });
+
+          pill.classList.remove('bg-surface-container-high/60', 'text-outline', 'border-outline-variant/40');
+          pill.classList.add('bg-primary/20', 'text-on-surface', 'border-primary/60', 'shadow-[0_0_10px_rgba(139,92,246,0.3)]');
+
+          if (previewArchetype) {
+            previewArchetype.textContent = pill.textContent.trim();
+          }
+        });
+      });
+
+      // 3. Avatar Selection
+      const avatarOptions = document.querySelectorAll('.avatar-option');
+      avatarOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          avatarOptions.forEach(o => {
+            o.classList.remove('border-primary', 'neon-pulse-ring');
+            o.classList.add('border-outline-variant/30', 'opacity-80');
+            const check = o.querySelector('.avatar-check');
+            if (check) check.remove();
+          });
+
+          opt.classList.remove('border-outline-variant/30', 'opacity-80');
+          opt.classList.add('border-primary', 'neon-pulse-ring');
+
+          const checkDiv = document.createElement('div');
+          checkDiv.className = 'avatar-check absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-primary text-on-primary-container flex items-center justify-center shadow-md';
+          checkDiv.innerHTML = '<span class="material-symbols-outlined text-[14px] font-bold">check</span>';
+          opt.appendChild(checkDiv);
+        });
+      });
+
+      // 4. Weight Affinity Slider
+      const weightSlider = document.getElementById('weightSlider');
+      const weightValueDisplay = document.getElementById('weightValueDisplay');
+      const weightLabelDisplay = document.getElementById('weightLabelDisplay');
+      const previewWeightTag = document.getElementById('previewWeightTag');
+      const previewWeightBar = document.getElementById('previewWeightBar');
+
+      const getWeightLabel = (v) => {
+        if (v < 1.8) return 'Casual / Party';
+        if (v < 2.8) return 'Medium Euro';
+        if (v < 4.0) return 'Heavy Strategy';
+        return 'Brainburner / War';
+      };
+
+      if (weightSlider) {
+        weightSlider.addEventListener('input', (e) => {
+          const val = parseFloat(e.target.value).toFixed(1);
+          if (weightValueDisplay) weightValueDisplay.textContent = val;
+          const label = getWeightLabel(val);
+          if (weightLabelDisplay) weightLabelDisplay.textContent = label;
+          if (previewWeightTag) previewWeightTag.textContent = `Affinity ${val} / 5.0`;
+          
+          if (previewWeightBar) {
+            const percentage = Math.round((val / 5.0) * 100);
+            previewWeightBar.style.width = percentage + '%';
+          }
+        });
+      }
+
+      // 5. Mechanic Chips Toggle
+      const mechanicChips = document.querySelectorAll('.mechanic-chip');
+      mechanicChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const iconSpan = chip.querySelector('span:last-child');
+          const isSelected = chip.classList.contains('bg-primary/15');
+
+          if (isSelected) {
+            chip.classList.remove('bg-primary/15', 'border-primary/60', 'text-on-surface', 'shadow-[0_0_12px_rgba(139,92,246,0.15)]');
+            chip.classList.add('bg-surface-container-high/40', 'border-outline-variant/30', 'text-outline');
+            if (iconSpan) {
+              iconSpan.textContent = 'circle';
+              iconSpan.className = 'material-symbols-outlined text-outline/40 text-[16px]';
+            }
+          } else {
+            chip.classList.add('bg-primary/15', 'border-primary/60', 'text-on-surface', 'shadow-[0_0_12px_rgba(139,92,246,0.15)]');
+            chip.classList.remove('bg-surface-container-high/40', 'border-outline-variant/30', 'text-outline');
+            if (iconSpan) {
+              iconSpan.textContent = 'check_circle';
+              iconSpan.className = 'material-symbols-outlined text-primary text-[16px]';
+            }
+          }
+        });
+      });
+
+      // 6. Player count buttons
+      const playerBtns = document.querySelectorAll('.player-btn');
+      playerBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          playerBtns.forEach(b => {
+            b.classList.remove('bg-primary/20', 'border-primary', 'text-primary', 'font-semibold', 'shadow-[0_0_10px_rgba(139,92,246,0.25)]');
+            b.classList.add('bg-surface-container-high/40', 'border-outline-variant/30', 'text-outline');
+          });
+          btn.classList.remove('bg-surface-container-high/40', 'border-outline-variant/30', 'text-outline');
+          btn.classList.add('bg-primary/20', 'border-primary', 'text-primary', 'font-semibold', 'shadow-[0_0_10px_rgba(139,92,246,0.25)]');
+        });
+      });
+    });
+  </script>
+</body></html>
