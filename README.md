@@ -97,6 +97,15 @@ npm start
 If `backend/package.json` does not define a `start` script, use the
 start command defined by that project (for example, `node server.js`).
 
+Create the .env file in the local host: 
+`PORT=5000
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=boardnight
+`
+
 Start the frontend from the `frontend` folder:
 
 ``` bash
